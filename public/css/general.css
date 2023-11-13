@@ -36,7 +36,32 @@ Default: 1
     text-shadow: none;
   }
 } */
+@keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 40px #e7f5ff, 0 0 80px #e7f5ff, 0 0 90px #e7f5ff, 0 0 100px #e7f5ff, 0 0 150px #e7f5ff;
+  }
 
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
+@keyframes pulsate {
+  100% {
+    text-shadow: 0 0 40px #d0ebff, 0 0 80px #d0ebff, 0 0 90px #d0ebff, 0 0 100px #d0ebff, 0 0 150px #d0ebff;
+  }
+  0% {
+    text-shadow: 0 0 10px #d0ebff, 0 0 45px #d0ebff, 0 0 55px #d0ebff, 0 0 70px #d0ebff, 0 0 80px #d0ebff;
+  }
+}
 /* @keyframes pulsate {
   100% {
     text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #0fa, 0 0 80px #0fa, 0 0 90px #0fa, 0 0 100px #0fa,
@@ -54,6 +79,11 @@ Default: 1
   box-sizing: border-box;
 }
 
+*:focus {
+  animation: pulsate 3s infinite alternate;
+  outline: none;
+}
+
 /* @media screen and (prefers-reduced-motion) { 
     h1 {
       animation: none;
@@ -69,9 +99,17 @@ body {
   font-weight: 400;
   line-height: 1;
   color: #e7f5ff;
+  background-color: #000;
 }
 
-.heading-primary {
+.container {
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+.heading-primary,
+.heading-tertiary {
   font-weight: 700;
   letter-spacing: -0.5px;
 }
@@ -79,6 +117,11 @@ body {
 .heading-primary {
   font-size: 5.2rem;
   margin-bottom: 2.4rem;
+}
+
+.heading-tertiary {
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
 }
 
 a:link,
