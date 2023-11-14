@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -8,6 +9,16 @@ const productSchema = new mongoose.Schema({
     trim: true,
     minlength: [2, 'A title must have at least 2 characters'],
     maxlength: [50, 'A title must have less than or equal to 50 characters'],
+  },
+  slug: String,
+  category: {
+    type: String,
+    enum: ['book', 'other'],
+    default: 'other',
+  },
+  stock: {
+    type: Number,
+    default: 1,
   },
   summary: {
     type: String,
@@ -33,4 +44,38 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'A product must have a price'],
   },
+  priceDiscount: {
+    type: Number,
+    validate: {
+      validator: function (val) {
+        // this only points to current doc on NEW document creation
+        return val <= this.price;
+      },
+      message: 'Discount ({VALUE}) must be less or equal then price',
+    },
+  },
+  image: {
+    type: String,
+    required: [true, 'A product must have an image'],
+  },
+  images: [String],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    select: false,
+  },
 });
+
+productSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField: 'product',
+  localField: '_id',
+});
+
+productSchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true });
+});
+
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;

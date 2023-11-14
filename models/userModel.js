@@ -18,6 +18,11 @@ const userSchema = mongoose.Schema({
     type: String,
     default: 'default.jpg',
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
+  },
   password: {
     type: String,
     required: [true, 'A user must have a password'],
@@ -34,5 +39,13 @@ const userSchema = mongoose.Schema({
       },
       message: 'Password is not confirmed',
     },
+  },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetTokenExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
   },
 });
