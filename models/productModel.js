@@ -4,7 +4,7 @@ const slugify = require('slugify');
 const productSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, 'A product must have a title'],
     unique: true,
     trim: true,
     minlength: [2, 'A title must have at least 2 characters'],
@@ -74,6 +74,7 @@ productSchema.virtual('reviews', {
 
 productSchema.pre('save', function (next) {
   this.slug = slugify(this.title, { lower: true });
+  next();
 });
 
 const Product = mongoose.model('Product', productSchema);
