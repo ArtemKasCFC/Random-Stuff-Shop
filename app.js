@@ -11,6 +11,9 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json({ limit: '10kb' }));
 
+// Submit parser
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
 app.use(express.static(`${__dirname}/public`));
 
 app.use('/api/v1/products', productRouter);

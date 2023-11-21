@@ -1,62 +1,61 @@
+const multer = require('multer');
 const Product = require('../models/productModel');
+const crudHandlers = require('./crudHandlers');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const APIFeatures = require('../utils/apiFeatures');
 
-exports.createProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.create(req.body);
+const multerStorage = multer.memoryStorage();
+const multerFilter = (req, file, cb) => {
+  file.mimetype.startsWith('image')
+    ? cb(null, true)
+    : cb(new AppError('Not an image. Please upload only images', 400), false);
+};
 
-  res.status(201).json({
-    status: 'success',
-    data: {
-      product,
-    },
-  });
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
+exports.uploadProductImages = upload.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'images', maxCount: 3 },
+]);
+
+exports.resizeProductImages = catchAsync(async (req, res, next) => {
+  console.log(req.file);
+  if (!req.files.image || !req.files.images) return next();
+
+  // Cover Image
+  req.body.image = `product-${req.params.id}-${Date.now()}-cover.jpeg`;
+  await sharp(req.files.image[0].buffer)
+    .resize(333, 333)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/products/${req.body.image}`);
+
+  // Images
+  await Promise.all(
+    req.files.images.map(async (file, ind) => {
+      req.body.images = [];
+      const filename = `product-${req.params.id}-${Date.now()}-${ind + 1}.jpeg`;
+
+      // Or file.buffer
+      await sharp(req.files.images[ind].buffer)
+        .resize(2000, 1333)
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 })
+        .toFile(`public/img/products/${filename}`);
+
+      req.body.images.push(filename);
+    })
+  );
+
+  next();
 });
 
-exports.getProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+exports.createProduct = crudHandlers.createOne(Product);
 
-  if (!product) return next(new AppError('There is no product with this Id', 404));
+exports.getProduct = crudHandlers.getOne(Product);
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      product,
-    },
-  });
-});
+exports.getAllProducts = crudHandlers.getAll(Product);
 
-exports.updateProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+exports.updateProduct = crudHandlers.updateOne(Product);
 
-  if (!product) return next(new AppError('There is no product with this Id', 404));
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      product,
-    },
-  });
-});
-
-exports.deleteProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findByIdAndDelete(req.params.id);
-
-  if (!product) return next(new AppError('There is no product with this Id', 404));
-
-  res.status(204).json();
-});
-
-exports.getAllProducts = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Product.find(), req.query).filter().sort().limitFields().paginate();
-  const products = await features.query;
-
-  res.status(200).json({
-    status: 'success',
-    results: products.length,
-    data: {
-      products,
-    },
-  });
-});
+exports.deleteProduct = crudHandlers.deleteOne(Product);

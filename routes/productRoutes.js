@@ -9,6 +9,10 @@ router
   .patch(productController.updateProduct)
   .delete(productController.deleteProduct);
 
-router.route('/').post(productController.createProduct);
+router
+  .route('/')
+  // .post(productController.uploadProductImages, productController.resizeProductImages, productController.createProduct)
+  .post(productController.createProduct)
+  .get(productController.getAllProducts);
 
 module.exports = router;
