@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const AppError = require('./utils/appError');
@@ -14,6 +15,9 @@ app.use(express.json({ limit: '10kb' }));
 
 // Submit parser
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+// Coookie parser
+app.use(cookieParser());
 
 app.use(express.static(`${__dirname}/public`));
 
