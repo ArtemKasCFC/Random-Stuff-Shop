@@ -34,23 +34,28 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
+reviewSchema.index({ product: 1, user: 1 }, { unique: true });
+
 reviewSchema.pre(/^find/, function (next) {
-  this.populate({ path: 'User', select: 'name photo' });
+  this.populate({ path: 'user', select: 'name photo' });
   next();
 });
 
-reviewSchema.static.calcAvgRating = async function (productID) {
+reviewSchema.statics.calcAvgRating = async function (productID) {
   const stats = await this.aggregate([
     { $match: { product: productID } },
     { $group: { _id: '$product', numRating: { $sum: 1 }, avgRating: { $avg: '$rating' } } },
   ]);
   stats.length > 0
-    ? await Product.findByIdAndUpdate({ ratingsQuantity: stats[0].numRating, ratingsAverage: stats[0].avgRating })
-    : await Product.findByIdAndUpdate({ ratingsQuantity: 0, ratingsAverage: 3 });
+    ? await Product.findByIdAndUpdate(productID, {
+        ratingsQuantity: stats[0].numRating,
+        ratingsAverage: stats[0].avgRating,
+      })
+    : await Product.findByIdAndUpdate(productID, { ratingsQuantity: 0, ratingsAverage: 3 });
 };
 
-reviewSchema.post('save', function () {
-  this.constructor.calcAvgRating(this.product);
+reviewSchema.post('save', async function () {
+  await this.constructor.calcAvgRating(this.product);
 });
 
 reviewSchema.pre(/^findOneAnd/, async function (next) {

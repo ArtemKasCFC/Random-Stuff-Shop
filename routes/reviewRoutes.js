@@ -3,6 +3,8 @@ const reviewController = require('../controllers/reviewController');
 const authController = require('../controllers/authController');
 const router = express.Router();
 
+router.use(authController.protect);
+
 router
   .route('/')
   .post(authController.restrictTo('user'), reviewController.setTourUserIDs, reviewController.createReview)

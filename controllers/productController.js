@@ -52,7 +52,7 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
 
 exports.createProduct = crudHandlers.createOne(Product);
 
-exports.getProduct = crudHandlers.getOne(Product);
+exports.getProduct = crudHandlers.getOne(Product, { path: 'reviews' });
 
 exports.getAllProducts = crudHandlers.getAll(Product);
 

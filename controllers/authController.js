@@ -62,7 +62,6 @@ exports.login = catchAsync(async (req, res, next) => {
 exports.protect = catchAsync(async (req, res, next) => {
   // Check if token exists
   let token;
-  console.log(req.cookies);
   if (req.headers.authorization?.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
   } else if (req.cookies.jwt) {
@@ -108,3 +107,11 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return next(new AppError('There is no user with this email', 404));
+
+  const resetToken = user.createResetToken();
+  await user.save({ validateBeforeSave: false });
+});
