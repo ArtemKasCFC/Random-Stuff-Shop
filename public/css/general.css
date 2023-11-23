@@ -103,12 +103,13 @@ body {
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 140rem;
   padding: 0 3.2rem;
   margin: 0 auto;
 }
 
 .heading-primary,
+.heading-secondary,
 .heading-tertiary {
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -117,6 +118,14 @@ body {
 .heading-primary {
   font-size: 5.2rem;
   margin-bottom: 2.4rem;
+}
+
+.heading-secondary {
+  font-size: 3.6rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+  /* text-transform: uppercase; */
+  /* letter-spacing: 0.4rem; */
 }
 
 .heading-tertiary {
