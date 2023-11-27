@@ -21,9 +21,16 @@
       </a>
       <nav class="main-nav">
         <ul class="main-nav__list">
-          <li><a class="main-nav__link" href="">Just</a></li>
-          <li><a class="main-nav__link" href="">Some</a></li>
-          <li><a class="main-nav__link" href="">Text</a></li>
+          <li>
+            <form action="submit" id="search-form">
+              <input type="text" id="search-input" class="search-input" placeholder="Type a product name" />
+              <button class="search-btn"><ion-icon name="search" class="search-icon"></ion-icon></button>
+            </form>
+          </li>
+          <li><a class="main-nav__link" href="">Sign Up</a></li>
+          <li><a class="main-nav__link" href="">Log In</a></li>
+          <li><a class="main-nav__link" href="">All Products</a></li>
+          <li><a class="main-nav__link" href="">About</a></li>
         </ul>
       </nav>
     </header>
@@ -36,9 +43,19 @@
           </div>
         </div>
       </section>
+      <section class="how-it-works">
+        <div class="container">
+          <div class="steps">
+            <div class="step">
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="section-best-sellers">
         <div class="container">
-          <h2 class="heading-secondary">Best Sellers</h2>
+          <p class="subheading">Best Sellers</p>
+          <h2 class="heading-secondary">Our most popular products based on sales</h2>
           <div class="products">
             <div class="product">
               <img
@@ -100,5 +117,7 @@
       </section>
     </main>
     <footer></footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>
 </html>
