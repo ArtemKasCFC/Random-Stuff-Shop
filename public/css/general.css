@@ -116,22 +116,26 @@ body {
 }
 
 .heading-primary {
+  color: #0fe;
   font-size: 5.2rem;
   margin-bottom: 2.4rem;
 }
 
 .heading-secondary {
+  color: #0fe;
   font-size: 3.6rem;
   margin-bottom: 6.4rem;
   text-align: center;
 }
 
 .heading-tertiary {
+  color: #ff45d0;
   font-size: 2.4rem;
   margin-bottom: 1.2rem;
 }
 
 .subheading {
+  color: #ff45d0;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.4rem;
