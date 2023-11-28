@@ -34,19 +34,26 @@
         </ul>
       </nav>
     </header>
-    <section class="section-login">
+    <section class="section-signup">
       <div class="container">
-        <div class="login">
-          <p class="subheading">Have an account?</p>
-          <h2 class="heading-secondary">Login</h2>
-          <form action="/" id="login-form">
+        <div class="signup">
+          <p class="subheading">Create your account</p>
+          <h2 class="heading-secondary">Sign up</h2>
+          <form action="/" id="signup-form">
             <label for="email">Email</label>
             <input type="text" id="email" name="email" placeholder="Your Email" required />
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Your Password" required />
-            <button class="login-btn" type="submit">Login</button>
+            <label for="password-confirm">Password Confirm</label>
+            <input
+              type="password"
+              id="password-confirm"
+              name="password-confirm"
+              placeholder="Confirm Your Password"
+              required
+            />
+            <button class="signup-btn" type="submit">Sign up</button>
           </form>
-          <p class="forgot-password">Forgot password?</p>
         </div>
       </div>
     </section>

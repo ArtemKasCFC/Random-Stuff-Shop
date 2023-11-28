@@ -84,6 +84,10 @@ Default: 1
   outline: none;
 }
 
+input:focus::placeholder {
+  color: transparent;
+}
+
 /* @media screen and (prefers-reduced-motion) { 
     h1 {
       animation: none;
