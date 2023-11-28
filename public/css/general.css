@@ -56,10 +56,10 @@ Default: 1
 
 @keyframes pulsate {
   100% {
-    text-shadow: 0 0 40px #d0ebff, 0 0 80px #d0ebff, 0 0 90px #d0ebff, 0 0 100px #d0ebff, 0 0 150px #d0ebff;
+    text-shadow: 0 0 40px #ff45d0, 0 0 80px #ff45d0, 0 0 90px #ff45d0, 0 0 100px #ff45d0, 0 0 150px #ff45d0;
   }
   0% {
-    text-shadow: 0 0 10px #d0ebff, 0 0 45px #d0ebff, 0 0 55px #d0ebff, 0 0 70px #d0ebff, 0 0 80px #d0ebff;
+    text-shadow: 0 0 10px #ff45d0, 0 0 45px #ff45d0, 0 0 55px #ff45d0, 0 0 70px #ff45d0, 0 0 80px #ff45d0;
   }
 }
 /* @keyframes pulsate {
@@ -112,13 +112,15 @@ body {
 .heading-secondary,
 .heading-tertiary {
   font-weight: 700;
-  letter-spacing: -0.5px;
+  letter-spacing: 1px;
 }
 
 .heading-primary {
   color: #0fe;
   font-size: 5.2rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.6rem;
+  text-decoration: underline;
+  text-underline-offset: 1.2rem;
 }
 
 .heading-secondary {

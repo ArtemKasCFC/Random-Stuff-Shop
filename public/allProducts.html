@@ -16,88 +16,173 @@
   <body>
     <header class="header">
       <a href="">
-        <!-- <img src="/public/img/eb82dcc2c77243948bfeca4ad8281310 (3).png" alt="Random Stuff Shop Logo" /> -->
-        <p>Random Stuff Shop</p>
+        <img class="logo-header" src="/public/img/logo-no-background.png" alt="Random Stuff Shop Logo" />
+        <!-- <p>Random Stuff Shop</p> -->
       </a>
       <nav class="main-nav">
         <ul class="main-nav__list">
           <li>
-            <form action="submit" id="search" class="search">
-              <input type="text" id="search-input" placeholder="Type a product" />
-              <button>Search</button>
+            <form action="submit" id="search-form">
+              <input type="text" id="search-input" class="search-input" placeholder="Type a product name" />
+              <button class="search-btn"><ion-icon name="search" class="search-icon"></ion-icon></button>
             </form>
           </li>
-          <li><a class="main-nav__link" href="">Just</a></li>
-          <li><a class="main-nav__link" href="">Some</a></li>
-          <li><a class="main-nav__link" href="">Text</a></li>
+          <li><a class="main-nav__link" href="">Sign Up</a></li>
+          <li><a class="main-nav__link" href="">Log In</a></li>
+          <li><a class="main-nav__link" href="">All Products</a></li>
+          <li><a class="main-nav__link" href="">About</a></li>
         </ul>
       </nav>
     </header>
+
     <section class="all-products">
       <aside class="catalog-filter">
-        <select name="category" id="category">
-          <option selected="selected" value="all">All</option>
-          <option value="books">Books</option>
-          <option value="other">Other</option>
-        </select>
-        <label for="filter-sale">On Sale</label>
-        <input type="checkbox" id="filter-sale" />
-        <select name="orderby" id="orderby">
-          <option selected="selected" value="rating">Rating</option>
-          <option value="rating-num">Most Reviews</option>
-          <option value="price">Price</option>
-        </select>
-        <label for="min-price">Price</label>
-        <input type="input" id="min-price" />
-        <input type="input" id="max-price" />
+        <div class="catalog-filter-container">
+          <label for="category">Category</label>
+          <select name="category" id="category">
+            <option selected="selected" value="all">All</option>
+            <option value="books">Books</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="orderby">Order by</label>
+          <select name="orderby" id="orderby">
+            <option selected="selected" value="rating">Rating</option>
+            <option value="rating-num">Most Reviews</option>
+            <option value="price">Price</option>
+          </select>
+          <div class="on-sale"><label for="filter-sale">On Sale</label> <input type="checkbox" id="filter-sale" /></div>
+
+          <label for="min-price">Price</label>
+          <input type="input" id="min-price" placeholder="0" />
+          <input type="input" id="max-price" placeholder="1000" />
+        </div>
       </aside>
-      <div class="container">
+      <div class="all-products-list">
         <p class="subheading">Best Sellers</p>
         <h2 class="heading-secondary">Our most popular products based on sales</h2>
         <div class="products">
           <div class="product">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
-              alt=""
-              class="product-img"
-            />
-            <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
-            <p class="product-desc">
-              How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that threaten
-              their lives is by Zachary Auburn.
-            </p>
+            <div class="product-info">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
+                alt=""
+                class="product-img"
+              />
+              <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
+              <p class="product-desc">
+                How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
+                threaten their lives is by Zachary Auburn.
+              </p>
+            </div>
             <a class="product-btn" href="">$7.10 &dash; Add to bag</a>
           </div>
 
           <div class="product">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
-              alt=""
-              class="product-img"
-            />
-            <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
-            <p class="product-desc">
-              How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that threaten
-              their lives is by Zachary Auburn.
-            </p>
+            <div class="product-info">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
+                alt=""
+                class="product-img"
+              />
+              <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
+              <p class="product-desc">
+                How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
+                threaten their lives is by Zachary Auburn.
+              </p>
+            </div>
             <a class="product-btn" href="">$7.10 &dash; Add to bag</a>
           </div>
 
           <div class="product">
-            <img
-              src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
-              alt=""
-              class="product-img"
-            />
-            <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
-            <p class="product-desc">
-              How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that threaten
-              their lives is by Zachary Auburn.
-            </p>
+            <div class="product-info">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
+                alt=""
+                class="product-img"
+              />
+              <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
+              <p class="product-desc">
+                How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
+                threaten their lives is by Zachary Auburn.
+              </p>
+            </div>
+            <a class="product-btn" href="">$7.10 &dash; Add to bag</a>
+          </div>
+
+          <div class="product">
+            <div class="product-info">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
+                alt=""
+                class="product-img"
+              />
+              <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
+              <p class="product-desc">
+                How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
+                threaten their lives is by Zachary Auburn.
+              </p>
+            </div>
+            <a class="product-btn" href="">$7.10 &dash; Add to bag</a>
+          </div>
+
+          <div class="product">
+            <div class="product-info">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
+                alt=""
+                class="product-img"
+              />
+              <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
+              <p class="product-desc">
+                How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
+                threaten their lives is by Zachary Auburn.
+              </p>
+            </div>
+            <a class="product-btn" href="">$7.10 &dash; Add to bag</a>
+          </div>
+
+          <div class="product">
+            <div class="product-info">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300"
+                alt=""
+                class="product-img"
+              />
+              <h3 class="product-title heading-tertiary">How to talk to your cat about gun safety book</h3>
+              <p class="product-desc">
+                How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
+                threaten their lives is by Zachary Auburn.
+              </p>
+            </div>
             <a class="product-btn" href="">$7.10 &dash; Add to bag</a>
           </div>
         </div>
       </div>
     </section>
+    <footer>
+      <div class="container">
+        <div class="footer">
+          <div class="contact-us">
+            <i class="ph-duotone ph-telegram-logo"></i>
+
+            <i class="ph-duotone ph-envelope-simple"></i>
+
+            <i class="ph-duotone ph-phone"></i>
+
+            <i class="ph-duotone ph-github-logo"></i>
+          </div>
+          <a href="">
+            <img class="logo-header" src="/public/img/logo-no-background.png" alt="Random Stuff Shop Logo" />
+            <!-- <p>Random Stuff Shop</p> -->
+          </a>
+          <div class="additional-info">
+            <p>Project Documentation</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </body>
 </html>
