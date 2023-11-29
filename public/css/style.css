@@ -292,6 +292,12 @@
   width: 100%;
 }
 
+.product-imgs {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2.4rem;
+}
+
 .img-display {
   overflow: hidden;
 }
@@ -308,6 +314,7 @@
 
 .img-select {
   display: flex;
+  flex-direction: column;
 }
 
 .img-item {
