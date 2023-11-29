@@ -280,6 +280,44 @@
   color: #0fe;
 }
 
+/*Product Detail Page*/
+
+.product-detail-card {
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+.product-detail-card img {
+  display: block;
+  width: 100%;
+}
+
+.img-display {
+  overflow: hidden;
+}
+
+.img-showcase {
+  display: flex;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+.img-showcase img {
+  min-width: 100%;
+}
+
+.img-select {
+  display: flex;
+}
+
+.img-item {
+  margin: 0.4rem;
+}
+
+.img-item:hover {
+  opacity: 0.8;
+}
+
 /*Footer*/
 .footer {
   display: flex;

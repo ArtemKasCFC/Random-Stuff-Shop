@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/public/css/general.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+
+    <title>Random Stuff Shop</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="">
+        <img class="logo-header" src="/public/img/logo-no-background.png" alt="Random Stuff Shop Logo" />
+        <!-- <p>Random Stuff Shop</p> -->
+      </a>
+      <nav class="main-nav">
+        <ul class="main-nav__list">
+          <li>
+            <form action="submit" id="search-form">
+              <input type="text" id="search-input" class="search-input" placeholder="Type a product name" />
+              <button class="search-btn"><ion-icon name="search" class="search-icon"></ion-icon></button>
+            </form>
+          </li>
+          <li><a class="main-nav__link" href="">Sign Up</a></li>
+          <li><a class="main-nav__link" href="">Log In</a></li>
+          <li><a class="main-nav__link" href="">All Products</a></li>
+          <li><a class="main-nav__link" href="">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="product-detail-card">
+      <div class="product-imgs">
+        <div class="img-display">
+          <div class="img-showcase">
+            <img src="./img/logo-no-background.png" alt="" />
+            <img src="./img/random-stuff-shop-high-resolution-logo-white-transparent.png" alt="" />
+            <img src="./img/logo-no-background.png" alt="" />
+            <img src="./img/random-stuff-shop-high-resolution-logo-white-transparent.png" alt="" />
+          </div>
+        </div>
+        <div class="img-select">
+          <div class="img-item">
+            <a href="#" data-id="1">
+              <img src="./img/logo-no-background.png" alt="" />
+            </a>
+          </div>
+          <div class="img-item">
+            <a href="#" data-id="2">
+              <img src="./img/random-stuff-shop-high-resolution-logo-white-transparent.png" alt="" />
+            </a>
+          </div>
+          <div class="img-item">
+            <a href="#" data-id="3">
+              <img src="./img/logo-no-background.png" alt="" />
+            </a>
+          </div>
+          <div class="img-item">
+            <a href="#" data-id="4">
+              <img src="./img/random-stuff-shop-high-resolution-logo-white-transparent.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="product-content"></div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer">
+          <div class="contact-us">
+            <i class="ph-duotone ph-telegram-logo"></i>
+
+            <i class="ph-duotone ph-envelope-simple"></i>
+
+            <i class="ph-duotone ph-phone"></i>
+
+            <i class="ph-duotone ph-github-logo"></i>
+          </div>
+          <a href="">
+            <img class="logo-header" src="/public/img/logo-no-background.png" alt="Random Stuff Shop Logo" />
+            <!-- <p>Random Stuff Shop</p> -->
+          </a>
+          <div class="additional-info">
+            <p>Project Documentation</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
