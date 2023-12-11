@@ -159,3 +159,11 @@ a:visited {
 ul {
   list-style: none;
 }
+
+.tab {
+  display: none;
+}
+
+.tab--active {
+  display: block;
+}

@@ -190,6 +190,7 @@
 
 #min-price::placeholder,
 #max-price::placeholder,
+#name::placeholder,
 #email::placeholder,
 #password::placeholder,
 #password-confirm::placeholder {
@@ -231,12 +232,14 @@
 }
 
 #login-form,
-#signup-form {
+#signup-form,
+#settings-form {
   display: flex;
   flex-direction: column;
 }
 
 #email,
+#name,
 #password,
 #password-confirm {
   padding: 0.8rem 1.2rem;
@@ -253,7 +256,8 @@
 }
 
 #login-form label,
-#signup-form label {
+#signup-form label,
+#settings-form label {
   font-size: 2.4rem;
   color: #ff45d0;
   margin-bottom: 0.8rem;
@@ -262,7 +266,8 @@
 .login-btn,
 .signup-btn,
 .filter-btn,
-.add-to-cart-btn {
+.add-to-cart-btn,
+.settings-btn {
   margin-top: 1.2rem;
   color: #ff45d0;
   background-color: #000;
@@ -505,4 +510,42 @@ input[type='number'] {
 .ph-duotone {
   color: #0fe;
   font-size: 3.6rem;
+}
+
+/*Account Page*/
+.section-mypage {
+  height: 75vh;
+}
+
+.account-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.tabs button {
+  color: #ff45d0;
+  background-color: #000;
+  border: none;
+  border-bottom: 0.1rem solid #0fe;
+  padding: 0.8rem 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.tab {
+  justify-self: center;
+}
+
+#settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
