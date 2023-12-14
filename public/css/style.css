@@ -95,12 +95,7 @@
 }
 
 .hero-btn {
-  /* color: var(--purple); */
-  /* font-size: 2.4rem; */
-  /* text-transform: uppercase; */
-  /* border: 0.2rem solid var(--purple); */
   padding: 1.2rem 1.2rem;
-  /* box-shadow: 0 0 0.2rem var(--purple), 0 0 0.2rem var(--purple), 0 0 2rem var(--purple), inset 0 0 0.8rem var(--purple); */
 }
 
 /*BESTSELLERS*/
@@ -191,44 +186,41 @@
   margin: 0 auto;
 }
 
-.catalog-filter-container {
+#catalog-filter-form {
   margin-top: 12.8rem;
   display: flex;
   flex-direction: column;
 }
 
-#category,
-#orderby,
-#min-price,
-#max-price {
+#catalog-filter-form input,
+select {
   padding: 0.4rem 0.8rem;
   width: 20rem;
   appearance: none;
-  /* safari */
   -webkit-appearance: none;
-  /* other styles for aesthetics */
-  cursor: pointer;
   background-color: #000;
-  border: 0.2rem solid var(--sky);
-  color: var(--purple);
+  cursor: pointer;
+  border: 1px solid var(--sky);
+  box-shadow: 0 0 5px var(--sky), 0 0 5px var(--sky) inset;
   margin-bottom: 1.6rem;
-}
-
-.catalog-filter-container label {
-  font-size: 2.4rem;
   color: var(--purple);
-  margin-bottom: 0.8rem;
 }
 
 .on-sale {
   margin-bottom: 0.8rem;
   display: flex;
-  align-items: center;
-  gap: 1.2rem;
+  /* align-items:  center; */
+  gap: 1.6rem;
 }
 
-.on-sale input {
-  transform: translateY(-40%);
+.on-sale #checkbox {
+  transform: translateY(10%);
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.on-sale #checkbox:checked {
+  background-color: var(--purple);
 }
 
 /*logIn*/
@@ -245,38 +237,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-#login-form,
-#signup-form,
-#settings-form {
-  display: flex;
-  flex-direction: column;
-}
-
-#email,
-#name,
-#password,
-#password-confirm {
-  padding: 0.8rem 1.2rem;
-  width: 30rem;
-  appearance: none;
-  /* safari */
-  -webkit-appearance: none;
-  /* other styles for aesthetics */
-  cursor: pointer;
-  background-color: #000;
-  border: 0.2rem solid var(--sky);
-  color: var(--purple);
-  margin-bottom: 1.6rem;
-}
-
-#login-form label,
-#signup-form label,
-#settings-form label {
-  font-size: 2.4rem;
-  color: var(--purple);
-  margin-bottom: 0.8rem;
 }
 
 .forgot-password {
@@ -393,18 +353,6 @@
   text-align: center;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-
 .amount {
   display: flex;
   align-items: center;
@@ -431,12 +379,6 @@ input[type='number'] {
 
 .review-order {
   margin-bottom: 3.2rem;
-}
-
-.review-order label {
-  font-size: 2.4rem;
-  color: var(--purple);
-  margin-bottom: 0.8rem;
 }
 
 .review-order #orderby {
