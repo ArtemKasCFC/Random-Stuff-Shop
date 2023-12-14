@@ -36,6 +36,12 @@ Default: 1
     text-shadow: none;
   }
 } */
+
+:root {
+  --purple: #ff45d0;
+  --sky: #0fe;
+}
+
 @keyframes flicker {
   0%,
   18%,
@@ -56,22 +62,14 @@ Default: 1
 
 @keyframes pulsate {
   100% {
-    text-shadow: 0 0 40px #ff45d0, 0 0 80px #ff45d0, 0 0 90px #ff45d0, 0 0 100px #ff45d0, 0 0 150px #ff45d0;
+    text-shadow: 0 0 40px var(--purple), 0 0 80px var(--purple), 0 0 90px var(--purple), 0 0 100px var(--purple),
+      0 0 150px var(--purple);
   }
   0% {
-    text-shadow: 0 0 10px #ff45d0, 0 0 45px #ff45d0, 0 0 55px #ff45d0, 0 0 70px #ff45d0, 0 0 80px #ff45d0;
+    text-shadow: 0 0 10px var(--purple), 0 0 45px var(--purple), 0 0 55px var(--purple), 0 0 70px var(--purple),
+      0 0 80px var(--purple);
   }
 }
-/* @keyframes pulsate {
-  100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #0fa, 0 0 80px #0fa, 0 0 90px #0fa, 0 0 100px #0fa,
-      0 0 150px #0fa;
-  }
-  0% {
-    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #0fa, 0 0 45px #0fa, 0 0 55px #0fa, 0 0 70px #0fa,
-      0 0 80px #0fa;
-  }
-} */
 
 * {
   padding: 0;
@@ -84,15 +82,14 @@ Default: 1
   outline: none;
 }
 
-input:focus::placeholder {
-  color: transparent;
+*::placeholder {
+  color: var(--purple);
+  opacity: 0.75;
 }
 
-/* @media screen and (prefers-reduced-motion) { 
-    h1 {
-      animation: none;
-    }
-  } */
+input:focus {
+  animation: none;
+}
 
 html {
   font-size: 62.5%;
@@ -102,8 +99,11 @@ body {
   font-family: 'Teko', sans-serif;
   font-weight: 400;
   line-height: 1;
-  color: #e7f5ff;
   background-color: #000;
+}
+
+section {
+  margin: 9.6rem 0;
 }
 
 .container {
@@ -120,7 +120,7 @@ body {
 }
 
 .heading-primary {
-  color: #0fe;
+  color: var(--sky);
   font-size: 5.2rem;
   margin-bottom: 1.6rem;
   text-decoration: underline;
@@ -128,20 +128,20 @@ body {
 }
 
 .heading-secondary {
-  color: #0fe;
+  color: var(--sky);
   font-size: 3.6rem;
   margin-bottom: 6.4rem;
   text-align: center;
 }
 
 .heading-tertiary {
-  color: #ff45d0;
+  color: var(--purple);
   font-size: 2.4rem;
   margin-bottom: 1.2rem;
 }
 
 .subheading {
-  color: #ff45d0;
+  color: var(--purple);
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.4rem;
@@ -149,6 +149,66 @@ body {
   letter-spacing: 0.6rem;
   animation: pulsate 3s infinite alternate;
   margin-bottom: 1rem;
+}
+
+/* .btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.8rem;
+  text-transform: uppercase;
+  color: var(--purple);
+  background-color: #000;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  box-shadow: 0 0 0.2rem var(--purple), 0 0 0.2rem var(--purple), 0 0 2rem var(--purple), inset 0 0 0.8rem var(--purple);
+  cursor: pointer;
+
+  margin-top: 1.2rem;
+
+  transition: all 0.3s ease;
+} */
+.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.8rem;
+  text-transform: uppercase;
+  color: var(--purple);
+  background-color: #000;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid var(--purple);
+  box-shadow: 0 0 5px var(--purple), 0 0 5px var(--purple) inset;
+  cursor: pointer;
+
+  margin-top: 1.2rem;
+
+  transition: all 0.3s ease;
+  z-index: 2;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.btn:after {
+  position: absolute;
+  content: ' ';
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  color: #000;
+}
+
+.btn:hover:after {
+  background: var(--purple);
+  -webkit-transform: scale(2) rotate(180deg);
+  transform: scale(2) rotate(180deg);
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 1), -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 1), inset 4px 4px 6px 0 rgba(116, 125, 136, 0.3);
 }
 
 a:link,
