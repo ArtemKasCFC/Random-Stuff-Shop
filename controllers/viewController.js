@@ -9,3 +9,9 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     products,
   });
 });
+
+exports.getLoginForm = (req, res, next) => {
+  res.status(200).render('login', {
+    title: 'Login Form',
+  });
+};

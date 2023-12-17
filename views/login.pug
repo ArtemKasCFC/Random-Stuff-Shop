@@ -1,0 +1,15 @@
+extends base
+
+block content 
+    section.section-login
+        .container
+            .login
+                p.subheading Have an account?
+                h2.heading-secondary Login
+                form#login-form.form
+                    label(for='email') Email
+                    input#email(type='text', name='email', placeholder='Your Email', required='')
+                    label(for='password') Password
+                    input#password(type='password', name='password', placeholder='Your Password', required='')
+                    button.btn(type='submit') Login
+                p.forgot-password Forgot password?

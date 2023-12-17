@@ -1,4 +1,18 @@
-//Images Slider
+import { login } from './login';
+
+const loginForm = document.querySelector('#login-form');
+
+// LogIn
+if (loginForm) {
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    login(email, password);
+  });
+}
+
+// Images Slider
 const imgs = document.querySelectorAll('.img-select a');
 const imgBtns = [...imgs];
 let imgID = 1;
