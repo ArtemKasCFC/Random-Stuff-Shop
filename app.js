@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -13,6 +14,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Serving static files
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(express.json({ limit: '10kb' }));
 
 // Submit parser
@@ -20,10 +27,6 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // Coookie parser
 app.use(cookieParser());
-
-// Serving static files
-app.set('view engine', 'pug');
-app.use(express.static(`${__dirname}/public`));
 
 app.use('/', viewRouter);
 app.use('/api/v1/products', productRouter);
