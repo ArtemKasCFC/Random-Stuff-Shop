@@ -2,9 +2,10 @@
   "name": "random-stuff-shop",
   "version": "1.0.0",
   "description": "",
-  "default": "index.js",
+  "default": "overview.pug",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "parcel overview.pug",
+    "build": "parcel build overview.pug --dist-dir ./dist"
   },
   "repository": {
     "type": "git",
@@ -31,5 +32,8 @@
     "sharp": "^0.32.6",
     "slugify": "^1.6.6",
     "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.10.3"
   }
 }
