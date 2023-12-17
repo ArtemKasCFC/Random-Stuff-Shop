@@ -5,9 +5,6 @@
   justify-content: space-between;
   height: 9.6rem;
   padding: 0 4.8rem;
-  /* border-bottom: 0.2rem solid var(--sky);
-  border-top: 0.2rem solid var(--sky); */
-  /* box-shadow: 0 0 0.2rem var(--sky), 0 0 0.2rem var(--sky), 0 0 2rem var(--sky), inset 0 0 0.8rem var(--sky); */
 }
 
 .logo-header {
