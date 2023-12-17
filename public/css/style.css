@@ -70,7 +70,7 @@
 
 /*HERO*/
 .hero {
-  background-image: url('/public/img/Untitled\ Project.jpg');
+  background-image: url('/img/Untitled\ Project.jpg');
   background-size: cover;
   background-position: 0rem -30rem;
   height: 95vh;

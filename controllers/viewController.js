@@ -4,7 +4,7 @@ const Product = require('../models/productModel');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   const products = await Product.find();
-  res.status(200).render('base', {
+  res.status(200).render('overview', {
     title: 'Just Buy Something',
     products,
   });
