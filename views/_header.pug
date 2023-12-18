@@ -8,10 +8,16 @@ header.header
                     input#search-input.search-input(type='text', placeholder='Type a product name')
                     button.search-btn
                         ion-icon.search-icon(name='search')
-            li
-                a.main-nav__link(href='') Sign Up
-            li
-                a.main-nav__link(href='/login') Log In
+            if user
+                li
+                    a.main-nav__link(href='') My Page
+                li
+                    a.main-nav__link(href='') Log Out
+            else
+                li
+                    a.main-nav__link(href='') Sign Up
+                li
+                    a.main-nav__link(href='/login') Log In
             li
                 a.main-nav__link(href='') All Products
             li
