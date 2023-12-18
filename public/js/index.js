@@ -1,6 +1,7 @@
-import { login } from './login';
+import { login, logout } from './login';
 
 const loginForm = document.querySelector('#login-form');
+const logoutBtn = document.querySelector('#logout');
 
 // LogIn
 if (loginForm) {
@@ -10,6 +11,11 @@ if (loginForm) {
     const password = document.querySelector('#password').value;
     login(email, password);
   });
+}
+
+// Logout
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', logout);
 }
 
 // Images Slider
