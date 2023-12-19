@@ -1,7 +1,10 @@
 import { login, logout } from './login';
+import { addToCart } from './cartMain.js';
 
 const loginForm = document.querySelector('#login-form');
 const logoutBtn = document.querySelector('#logout');
+// const products = document.querySelector('.product');
+const addToCartBtns = document.querySelectorAll('.product-btn');
 
 // LogIn
 if (loginForm) {
@@ -17,6 +20,15 @@ if (loginForm) {
 if (logoutBtn) {
   logoutBtn.addEventListener('click', logout);
 }
+
+// Add To Cart
+addToCartBtns.forEach(btn => {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    const title = this.previousElementSibling.querySelector('.product-title').textContent;
+    addToCart(title);
+  });
+});
 
 // Images Slider
 const imgs = document.querySelectorAll('.img-select a');
