@@ -14,27 +14,14 @@ block content
                 p.subheading Best Sellers
                 h2.heading-secondary Our most popular products based on sales
                 .products
-                    .product
-                        .product-info
-                            img.product-img(src='https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300', alt='')
-                            h3.product-title.heading-tertiary How to talk to your cat about gun safety Book
-                            p.product-desc
-                                | How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
-                                | threaten their lives is by Zachary Auburn.
-                        a.product-btn(href='/') $7.10 &dash; Add to bag
-                    .product
-                        .product-info
-                            img.product-img(src='https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300', alt='')
-                            h3.product-title.heading-tertiary How to talk to your cat about gun safety Book 2
-                            p.product-desc
-                                | How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
-                                | threaten their lives is by Zachary Auburn.
-                        a.product-btn(href='/') $7.10 &dash; Add to bag
-                    .product
-                        .product-info
-                            img.product-img(src='https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300', alt='')
-                            h3.product-title.heading-tertiary 3How to talk to your cat about gun safety book
-                            p.product-desc
-                                | How to talk to your cat about gun safety and abstinence, drugs, satanism, and other dangers that
-                                | threaten their lives is by Zachary Auburn.
-                        a.product-btn(href='/') $7.10 &dash; Add to bag
+                    each product in products
+                        .product
+                            a(href=`/product/${product.slug}`).product-info
+                                img.product-img(src='https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300', alt='')
+                                h3.product-title.heading-tertiary #{product.title}
+                                p.product-desc #{product.summary}
+                            if user     
+                                button.product-btn $#{product.price} &dash; Add to bag
+                            else
+                                button.product-btn-redirect Check it out
+        

@@ -11,6 +11,20 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getProductPage = catchAsync(async (req, res, next) => {
+  const product = await Product.findOne({ slug: req.params.slug });
+  //.populate({
+  //   path: 'reviews',
+  //   fields: 'review rating user'
+  // });
+  if (!product) return next(new AppError('There is no product with this name', 404));
+
+  res.status(200).render('product', {
+    title: `${product.title}`,
+    product,
+  });
+});
+
 exports.getLoginForm = (req, res, next) => {
   res.status(200).render('login', {
     title: 'Login Form',

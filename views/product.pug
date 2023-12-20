@@ -1,0 +1,125 @@
+extends index 
+
+block content 
+    section.product-detail-card
+        .product-imgs
+            .img-display
+                .img-showcase
+                    img(src='./img/logo-no-background.png' alt='')
+                    img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
+                    img(src='./img/logo-no-background.png' alt='')
+                    img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
+            .img-select
+                .img-item
+                    a(href='#' data-id='1')
+                        img(src='./img/logo-no-background.png' alt='')
+                .img-item
+                    a(href='#' data-id='2')
+                        img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
+                .img-item
+                    a(href='#' data-id='3')
+                        img(src='./img/logo-no-background.png' alt='')
+                .img-item
+                    a(href='#' data-id='4')
+                        img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
+        .product-content
+            h2.heading-secondary Some Name
+            .product-price
+                p.old-price $15.00
+                p.new-price $12.00
+            .product-rating-container
+                i.ph-fill.ph-star
+                i.ph-fill.ph-star
+                i.ph-fill.ph-star
+                i.ph-bold.ph-star
+                i.ph-bold.ph-star
+                span.product-rating 3 (10)
+            p.product-full-desc
+                | This book details the most important things in life. How to talk to your cat about gun safety and abstinence,
+                | drugs, satanism, and other dangers that threaten their lives is by Zachary Auburn. A satirical book that
+                | answers the questions... &ldquo;What is the right age to talk to my cat about the proper use of firearms?&rdquo; and &ldquo;What
+                | are the benefits of my cat living a lifestyle of abstinence?&rdquo; and especially &ldquo;Why does my cat need to use the
+                | internet? Can&rsquo;t he just play with yarn like cats used to do?&rdquo;.
+            .purchase-info
+                .amount
+                    i.ph-fill.ph-arrow-square-left.arrow
+                    input#amount(type='number' min='0' max='99' maxlength='2' value='1' placeholder='1')
+                    i.ph-fill.ph-arrow-square-right.arrow
+                button.add-to-cart-btn.btn Add to cart
+    section.section-reviews
+        .review-order
+            label(for='orderby') Order by
+            select#orderby(name='orderby')
+                option(value='just') Just
+                option(value='some') Some
+                option(value='text') Text
+        .all-reviews
+            i.ph-fill.ph-arrow-square-left.arrow
+            .reviews-container
+                .review
+                    h3.review-name.heading-tertiary Some Name
+                    .review-rating
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-bold.ph-star
+                        i.ph-bold.ph-star
+                    p.review-text
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sint ab nihil labore sed hic molestiae
+                        | voluptatem, amet neque id voluptates ipsa aliquam qui iure. Blanditiis dolor saepe distinctio doloremque.
+                .review
+                    h3.review-name.heading-tertiary Some Name
+                    .review-rating
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-bold.ph-star
+                        i.ph-bold.ph-star
+                    p.review-text
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sint ab nihil labore sed hic molestiae
+                        | voluptatem, amet neque id voluptates ipsa aliquam qui iure. Blanditiis dolor saepe distinctio doloremque.
+                .review
+                    h3.review-name.heading-tertiary Some Name
+                    .review-rating
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-bold.ph-star
+                        i.ph-bold.ph-star
+                    p.review-text
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sint ab nihil labore sed hic molestiae
+                        | voluptatem, amet neque id voluptates ipsa aliquam qui iure. Blanditiis dolor saepe distinctio doloremque.
+                .review
+                    h3.review-name.heading-tertiary Some Name
+                    .review-rating
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-bold.ph-star
+                        i.ph-bold.ph-star
+                    p.review-text
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sint ab nihil labore sed hic molestiae
+                        | voluptatem, amet neque id voluptates ipsa aliquam qui iure. Blanditiis dolor saepe distinctio doloremque.
+                .review
+                    h3.review-name.heading-tertiary Some Name
+                    .review-rating
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-bold.ph-star
+                        i.ph-bold.ph-star
+                    p.review-text
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sint ab nihil labore sed hic molestiae
+                        | voluptatem, amet neque id voluptates ipsa aliquam qui iure. Blanditiis dolor saepe distinctio doloremque.
+                .review
+                    h3.review-name.heading-tertiary Some Name
+                    .review-rating
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-fill.ph-star
+                        i.ph-bold.ph-star
+                        i.ph-bold.ph-star
+                    p.review-text
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sint ab nihil labore sed hic molestiae
+                        | voluptatem, amet neque id voluptates ipsa aliquam qui iure. Blanditiis dolor saepe distinctio doloremque.
+            i.ph-fill.ph-arrow-square-right.arrow

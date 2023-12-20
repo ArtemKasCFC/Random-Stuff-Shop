@@ -12,8 +12,14 @@ router
 
 router
   .route('/')
-  // .post(productController.uploadProductImages, productController.resizeProductImages, productController.createProduct)
-  .post(authController.protect, authController.restrictTo('admin'), productController.createProduct)
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    productController.uploadProductImages,
+    productController.resizeProductImages,
+    productController.createProduct
+  )
+  // .post(authController.protect, authController.restrictTo('admin'), productController.createProduct)
   .get(productController.getAllProducts);
 
 module.exports = router;
