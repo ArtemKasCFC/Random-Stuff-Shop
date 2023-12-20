@@ -134,6 +134,7 @@
 
 .product-btn,
 .product-btn-redirect {
+  font-family: 'Teko', sans-serif;
   color: var(--purple);
   background-color: #000;
   font-size: 2.4rem;

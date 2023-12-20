@@ -23,23 +23,21 @@ block content
                     a(href='#' data-id='4')
                         img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
         .product-content
-            h2.heading-secondary Some Name
+            h2.heading-secondary #{product.title}
             .product-price
-                p.old-price $15.00
-                p.new-price $12.00
+                if product.priceDiscount
+                    p.old-price $#{product.price}
+                    p.new-price $#{product.priceDiscount}
+                else
+                    p.new-price $#{product.price}
             .product-rating-container
                 i.ph-fill.ph-star
                 i.ph-fill.ph-star
                 i.ph-fill.ph-star
                 i.ph-bold.ph-star
                 i.ph-bold.ph-star
-                span.product-rating 3 (10)
-            p.product-full-desc
-                | This book details the most important things in life. How to talk to your cat about gun safety and abstinence,
-                | drugs, satanism, and other dangers that threaten their lives is by Zachary Auburn. A satirical book that
-                | answers the questions... &ldquo;What is the right age to talk to my cat about the proper use of firearms?&rdquo; and &ldquo;What
-                | are the benefits of my cat living a lifestyle of abstinence?&rdquo; and especially &ldquo;Why does my cat need to use the
-                | internet? Can&rsquo;t he just play with yarn like cats used to do?&rdquo;.
+                span.product-rating #{product.ratingsAverage} (#{product.ratingsQuantity})
+            p.product-full-desc #{product.description}
             .purchase-info
                 .amount
                     i.ph-fill.ph-arrow-square-left.arrow

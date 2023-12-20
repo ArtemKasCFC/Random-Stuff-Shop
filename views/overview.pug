@@ -23,5 +23,5 @@ block content
                             if user     
                                 button.product-btn $#{product.price} &dash; Add to bag
                             else
-                                button.product-btn-redirect Check it out
+                                a(href=`/product/${product.slug}`).product-btn-redirect Check it out
         
