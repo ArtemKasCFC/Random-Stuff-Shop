@@ -4,6 +4,7 @@ const Product = require('../models/productModel');
 const crudHandlers = require('./crudHandlers');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const slugify = require('slugify');
 
 const multerStorage = multer.memoryStorage();
 
@@ -23,11 +24,13 @@ exports.uploadProductImages = upload.fields([
 exports.resizeProductImages = catchAsync(async (req, res, next) => {
   if (!req.files.image || !req.files.images) return next();
 
+  const slug = slugify(req.body.title, { lower: true });
+
   // Cover Image
-  req.body.image = `product-${req.params.id}-${Date.now()}-cover.jpeg`;
+  req.body.image = `product-${slug}-cover.jpg`;
   await sharp(req.files.image[0].buffer)
     .resize(300, 300)
-    .toFormat('jpeg')
+    .toFormat('jpg')
     .jpeg({ quality: 90 })
     .toFile(`public/img/products/${req.body.image}`);
 
@@ -36,12 +39,12 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
 
   await Promise.all(
     req.files.images.map(async (file, ind) => {
-      const filename = `product-${req.params.id}-${Date.now()}-${ind + 1}.jpeg`;
+      const filename = `product-${slug}-${ind + 1}.jpg`;
 
       // Or file.buffer
       await sharp(file.buffer)
         .resize(506, 252)
-        .toFormat('jpeg')
+        .toFormat('jpg')
         .jpeg({ quality: 90 })
         .toFile(`public/img/products/${filename}`);
 

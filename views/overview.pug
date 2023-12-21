@@ -17,7 +17,7 @@ block content
                     each product in products
                         .product
                             a(href=`/product/${product.slug}`).product-info
-                                img.product-img(src='https://cdn.shopify.com/s/files/1/0072/1432/products/random-house-books-how-to-talk-to-your-cat-about-gun-safety-book-funny-gag-gifts-17273580421281.jpg?v=1628348684&width=300', alt='')
+                                img.product-img(src=`/img/products/${product.image}`, alt=`${product.title}`)
                                 h3.product-title.heading-tertiary #{product.title}
                                 p.product-desc #{product.summary}
                             if user     
