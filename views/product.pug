@@ -5,23 +5,13 @@ block content
         .product-imgs
             .img-display
                 .img-showcase
-                    img(src='./img/logo-no-background.png' alt='')
-                    img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
-                    img(src='./img/logo-no-background.png' alt='')
-                    img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
+                    each image, ind in product.images
+                        img(src=`/img/products/${image}` alt=`${product.title}-${ind + 1}`)
             .img-select
-                .img-item
-                    a(href='#' data-id='1')
-                        img(src='./img/logo-no-background.png' alt='')
-                .img-item
-                    a(href='#' data-id='2')
-                        img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
-                .img-item
-                    a(href='#' data-id='3')
-                        img(src='./img/logo-no-background.png' alt='')
-                .img-item
-                    a(href='#' data-id='4')
-                        img(src='./img/random-stuff-shop-high-resolution-logo-white-transparent.png' alt='')
+                    each image, ind in product.images
+                        a(href='#' class="img-item" data-id=`${ind + 1}`)
+                            img(src=`/img/products/${image}` alt=`${product.title}-${ind + 1}`)
+                        
         .product-content
             h2.heading-secondary #{product.title}
             .product-price

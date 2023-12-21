@@ -274,6 +274,7 @@ select {
 .product-imgs {
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
   gap: 2.4rem;
 }
 
@@ -289,6 +290,9 @@ select {
 
 .img-showcase img {
   min-width: 100%;
+  border: 1px solid var(--sky);
+  box-shadow: 0 0 5px var(--sky), 0 0 5px var(--sky) inset;
+  padding: 0.8rem;
 }
 
 .img-select {
@@ -298,6 +302,9 @@ select {
 
 .img-item {
   margin: 0.4rem;
+  border: 1px solid var(--purple);
+  box-shadow: 0 0 5px var(--purple), 0 0 5px var(--purple) inset;
+  padding: 0.8rem;
 }
 
 .img-item:hover {
