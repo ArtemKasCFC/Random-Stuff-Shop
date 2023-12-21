@@ -110,21 +110,25 @@
 
 .product {
   max-width: 35rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 58rem;
+  display: grid;
+  grid-template-rows: 5fr 1fr;
+  align-items: start;
   border: 0.1rem solid var(--sky);
   /* border-radius: 2rem; */
   box-shadow: 0 0 0.2rem var(--sky), 0 0 0.2rem var(--sky), 0 0 2rem var(--sky), inset 0 0 0.8rem var(--sky);
 }
 
 .product-info {
+  height: 100%;
   padding: 2.4rem;
+  display: grid;
+  grid-template-rows: 5fr 1fr 1.5fr;
+  align-content: start;
 }
 
 .product-img {
   margin-bottom: 2.4rem;
-  /* border-radius: 2rem; */
 }
 
 .product-desc {
@@ -134,6 +138,7 @@
 
 .product-btn,
 .product-btn-redirect {
+  align-self: self-end;
   font-family: 'Teko', sans-serif;
   color: var(--purple);
   background-color: #000;

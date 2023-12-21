@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
     slug: String,
     category: {
       type: String,
-      enum: ['book', 'other'],
+      enum: ['books', 'candy', 'mugs and glasses', 'toys', 'socks', 'other'],
       default: 'other',
     },
     stock: {

@@ -8,8 +8,9 @@
     "main": false
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "nodemon server.js",
+    "import": "node dev/data/importDevData.js --import",
+    "delete": "node dev/data/importDevData.js --delete",
     "watch": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "build": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
   },

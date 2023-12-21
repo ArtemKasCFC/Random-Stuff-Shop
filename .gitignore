@@ -11,4 +11,9 @@ node_modules
 # build / generate output
 dist
 
+#prettier
 .prettierrc
+
+
+#dev data
+dev
