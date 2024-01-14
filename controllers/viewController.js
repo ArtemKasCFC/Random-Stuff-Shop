@@ -31,6 +31,21 @@ exports.getLoginForm = (req, res, next) => {
   });
 };
 
+exports.getCart = catchAsync(async (req, res, next) => {
+  let cart = await Cart.findOne({ user: req.user.id });
+  console.log(cart);
+  if (cart) {
+    cart = cart.products.map(async product => {
+      const productObj = await Product.findById(product.productID);
+      productObj.quantity = product.quantity;
+      return productObj;
+    });
+  }
+  res.status(200).render('shopping_cart.pug', {
+    title: 'My Cart',
+  });
+});
+
 exports.addToCart = catchAsync(async (req, res, next) => {
   const userID = req.user.id;
   const { productName, quantity } = req.body;

@@ -14,4 +14,6 @@ router
 
 router.get('/login', viewController.getLoginForm);
 
+router.get('/cart', authController.protect, viewController.getCart);
+
 module.exports = router;

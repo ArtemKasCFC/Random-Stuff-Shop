@@ -28,12 +28,15 @@ block content
                 i.ph-bold.ph-star
                 span.product-rating #{product.ratingsAverage} (#{product.ratingsQuantity})
             p.product-full-desc #{product.description}
-            .purchase-info
-                .amount
-                    i.ph-fill.ph-arrow-square-left.arrow
-                    input#amount(type='number' min='0' max='99' maxlength='2' value='1' placeholder='1')
-                    i.ph-fill.ph-arrow-square-right.arrow
-                button.add-to-cart-btn.btn Add to cart
+            if user
+                .purchase-info
+                    .amount
+                        i.ph-fill.ph-arrow-square-left.arrow
+                        input#amount(type='number' min='0' max='99' maxlength='2' value='1' placeholder='1')
+                        i.ph-fill.ph-arrow-square-right.arrow
+                    button.add-to-cart-btn.btn Add to cart
+            else
+                a.add-to-cart-btn.btn(href='/login') Log In
     section.section-reviews
         .review-order
             label(for='orderby') Order by

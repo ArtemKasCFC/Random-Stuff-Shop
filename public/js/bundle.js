@@ -6152,19 +6152,21 @@ var imgBtns = _toConsumableArray(imgs);
 
 var imgID = 1;
 
-var slideImg = function slideImg() {
-  var displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-  document.querySelector('.img-showcase').style.transform = "translateX(".concat(-(imgID - 1) * displayWidth, "px)");
-};
+if (imgs) {
+  var slideImg = function slideImg() {
+    var displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+    document.querySelector('.img-showcase').style.transform = "translateX(".concat(-(imgID - 1) * displayWidth, "px)");
+  };
 
-imgBtns.forEach(function (imgBtn) {
-  imgBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    imgID = imgBtn.dataset.id;
-    slideImg();
+  imgBtns.forEach(function (imgBtn) {
+    imgBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      imgID = imgBtn.dataset.id;
+      slideImg();
+    });
   });
-});
-window.addEventListener('resize', slideImg);
+  window.addEventListener('resize', slideImg);
+}
 },{"./login":"login.js","./cartMain.js":"cartMain.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -6193,7 +6195,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56918" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53542" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
