@@ -11,26 +11,27 @@ block content
                         .sc-info
                             p.sc-info__total-price
                                 | Total Price: 
-                                span $10
+                                span $#{productsTotal.total}
                             p.sc-info__discount
                                 | Discount: 
-                                span $0
+                                span $#{productsTotal.discount}
                             p.sc-info__final-price
                                 | Final Price: 
-                                span $10
+                                span $#{productsTotal.final}
                         button.check-out-btn.btn Check Out
                     .sc-products
                         ul.sc-products-list
-                            li.sc-product
-                                img.sc-product__img(src='' alt='')
-                                h3.heading-tertiary Some Product
-                                p.sc-product__price $10
-                                .amount
-                                    i.ph-fill.ph-arrow-square-left.arrow
-                                    input#amount(type='number' min='0' max='99' maxlength='2' value='1' placeholder='1')
-                                    i.ph-fill.ph-arrow-square-right.arrow
-                                p.sc-product__total $10
-                                button.sc-product__btn
-                                    ion-icon(name='close-outline')
+                            each product in products
+                                li.sc-product
+                                    img.sc-product__img(src=`/img/products/${product.image}` alt=`${product.title}`)
+                                    h3.heading-tertiary #{product.title}
+                                    p.sc-product__price $#{product.price}
+                                    .amount
+                                        i.ph-fill.ph-arrow-square-left.arrow
+                                        input#amount(type='number' min='0' max='99' maxlength='2' value=`${product.quantity}` placeholder='1')
+                                        i.ph-fill.ph-arrow-square-right.arrow
+                                    p.sc-product__total $#{product.price * product.quantity}
+                                    button.sc-product__btn
+                                        ion-icon(name='close-outline')
             else 
                 p Your Shopping Cart is empty
