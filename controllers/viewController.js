@@ -33,16 +33,37 @@ exports.getLoginForm = (req, res, next) => {
 
 exports.getCart = catchAsync(async (req, res, next) => {
   let cart = await Cart.findOne({ user: req.user.id });
-  console.log(cart);
+  let products;
+  let productsTotal;
   if (cart) {
     cart = cart.products.map(async product => {
-      const productObj = await Product.findById(product.productID);
-      productObj.quantity = product.quantity;
-      return productObj;
+      const newProduct = await Product.findById(product.productID);
+      newProduct.quantity = product.quantity;
+      return newProduct;
     });
+    products = await Promise.all(cart);
+    productsTotal = products.reduce((obj, cur) => {
+      let total = 0,
+        discount = 0,
+        final = 0;
+      total = cur.price * cur.quantity;
+      obj.total = (obj.total || 0) + total;
+      if (cur.priceDiscount) {
+        discount += cur.priceDiscount * cur.quantity;
+        obj.discount = (obj.discount || 0) + total;
+      } else {
+        obj.discount = 0;
+      }
+      final = total - discount;
+      obj.final = (obj.final || 0) + final;
+      return obj;
+    }, {});
   }
+  
   res.status(200).render('shopping_cart.pug', {
     title: 'My Cart',
+    products,
+    productsTotal,
   });
 });
 
