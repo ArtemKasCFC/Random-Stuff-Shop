@@ -3,7 +3,6 @@ import { addToCart } from './cartMain.js';
 
 const loginForm = document.querySelector('#login-form');
 const logoutBtn = document.querySelector('#logout');
-// const products = document.querySelector('.product');
 const addToCartBtns = document.querySelectorAll('.product-btn');
 
 // LogIn
@@ -50,4 +49,20 @@ if (imgs) {
   });
 
   window.addEventListener('resize', slideImg);
+}
+
+// Input Field
+const inputFields = document.querySelectorAll('#amount');
+
+if (inputFields) {
+  inputFields.forEach(input => {
+    input.addEventListener('input', e => {
+      if (input.value.length > 2) input.value = input.value.slice(0, 2);
+      if (input.value.startsWith(0)) input.value = input.value.slice(1);
+      const product = input.closest('.sc-product');
+      const productPrice = product.querySelector('.sc-product__price');
+      const productTotalPrice = product.querySelector('.sc-product__total');
+      productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +input.value).toFixed(2)}`;
+    });
+  });
 }

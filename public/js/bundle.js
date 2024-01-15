@@ -6119,8 +6119,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 var loginForm = document.querySelector('#login-form');
-var logoutBtn = document.querySelector('#logout'); // const products = document.querySelector('.product');
-
+var logoutBtn = document.querySelector('#logout');
 var addToCartBtns = document.querySelectorAll('.product-btn'); // LogIn
 
 if (loginForm) {
@@ -6166,6 +6165,22 @@ if (imgs) {
     });
   });
   window.addEventListener('resize', slideImg);
+} // Input Field
+
+
+var inputFields = document.querySelectorAll('#amount');
+
+if (inputFields) {
+  inputFields.forEach(function (input) {
+    input.addEventListener('input', function (e) {
+      if (input.value.length > 2) input.value = input.value.slice(0, 2);
+      if (input.value.startsWith(0)) input.value = input.value.slice(1);
+      var product = input.closest('.sc-product');
+      var productPrice = product.querySelector('.sc-product__price');
+      var productTotalPrice = product.querySelector('.sc-product__total');
+      productTotalPrice.textContent = "$".concat((+productPrice.textContent.slice(1) * +input.value).toFixed(2));
+    });
+  });
 }
 },{"./login":"login.js","./cartMain.js":"cartMain.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -6195,7 +6210,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53542" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62837" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
