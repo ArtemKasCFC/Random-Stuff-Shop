@@ -5,7 +5,7 @@ block content
         .container
             p.subheading Shopping Cart
             h2.heading-secondary I don&apos;t know just some text
-            if products !== undefind 
+            if products || products.length > 0 
                 .sc-container
                     .sc-info-container
                         .sc-info
@@ -26,6 +26,7 @@ block content
                                     img.sc-product__img(src=`/img/products/${product.image}` alt=`${product.title}`)
                                     h3.heading-tertiary #{product.title}
                                     p.sc-product__price $#{product.price}
+                                    p.sc-product__discount $#{product.priceDiscount}
                                     .amount
                                         i.ph-fill.ph-arrow-square-left.arrow
                                         input#amount(type='number' min='0' max='99' value=`${product.quantity}` placeholder='')

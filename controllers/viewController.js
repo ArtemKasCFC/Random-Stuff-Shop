@@ -99,9 +99,10 @@ exports.updateCart = catchAsync(async (req, res, next) => {
   let cart = await Cart.findOne({ user: userID });
 
   const existingProduct = cart.products.find(product => product.productID === id);
-  if (existingProduct) {
+  if (existingProduct || quantity > 0) {
     existingProduct.quantity = quantity;
   }
+  if (quantity === 0) cart.products = cart.products.filter(product => product.quantity > 0);
 
   await cart.save();
   res.status(200).json({

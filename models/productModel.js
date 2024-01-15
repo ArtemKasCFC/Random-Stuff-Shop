@@ -54,6 +54,7 @@ const productSchema = new mongoose.Schema(
         },
         message: 'Discount ({VALUE}) must be less or equal then price',
       },
+      default: 0,
     },
     image: {
       type: String,

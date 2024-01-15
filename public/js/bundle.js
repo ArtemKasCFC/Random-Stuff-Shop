@@ -6233,7 +6233,22 @@ if (imgs) {
 } // Input Field
 
 
-var inputFields = document.querySelectorAll('#amount');
+var inputFields = document.querySelectorAll('#amount'); // const allDiscounts = document.querySelectorAll('.sc-product__discount');
+
+var allTotalPrice = document.querySelectorAll('.sc-product__total');
+
+var recalculateTotal = function recalculateTotal() {
+  var totalEl = document.querySelector('.sc-info__total-price span');
+  var discountEl = document.querySelector('.sc-info__discount span');
+  var finalEl = document.querySelector('.sc-info__final-price span');
+  var total = 0; // allDiscounts.forEach(el => console.log(el.textContent.slice(1)));
+
+  allTotalPrice.forEach(function (el) {
+    return total += +el.textContent.slice(1);
+  });
+  totalEl.textContent = "$".concat(total.toFixed(2));
+  finalEl.textContent = "$".concat((totalEl.textContent.slice(1) - discountEl.textContent.slice(1)).toFixed(2));
+};
 
 if (inputFields) {
   inputFields.forEach(function (input) {
@@ -6246,6 +6261,7 @@ if (inputFields) {
       productTotalPrice.textContent = "$".concat((+productPrice.textContent.slice(1) * +input.value).toFixed(2));
       var productName = product.querySelector('.heading-tertiary').textContent;
       (0, _shoppingCart.changeQuantity)(productName, +input.value);
+      recalculateTotal();
     });
   });
 }
@@ -6277,7 +6293,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59786" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60790" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

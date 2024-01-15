@@ -54,6 +54,19 @@ if (imgs) {
 
 // Input Field
 const inputFields = document.querySelectorAll('#amount');
+// const allDiscounts = document.querySelectorAll('.sc-product__discount');
+const allTotalPrice = document.querySelectorAll('.sc-product__total');
+
+const recalculateTotal = () => {
+  const totalEl = document.querySelector('.sc-info__total-price span');
+  const discountEl = document.querySelector('.sc-info__discount span');
+  const finalEl = document.querySelector('.sc-info__final-price span');
+  let total = 0;
+  // allDiscounts.forEach(el => console.log(el.textContent.slice(1)));
+  allTotalPrice.forEach(el => (total += +el.textContent.slice(1)));
+  totalEl.textContent = `$${total.toFixed(2)}`;
+  finalEl.textContent = `$${(totalEl.textContent.slice(1) - discountEl.textContent.slice(1)).toFixed(2)}`;
+};
 
 if (inputFields) {
   inputFields.forEach(input => {
@@ -67,6 +80,8 @@ if (inputFields) {
 
       const productName = product.querySelector('.heading-tertiary').textContent;
       changeQuantity(productName, +input.value);
+
+      recalculateTotal();
     });
   });
 }
