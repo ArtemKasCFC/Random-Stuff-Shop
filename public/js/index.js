@@ -1,5 +1,6 @@
 import { login, logout } from './login';
 import { addToCart } from './cartMain.js';
+import { changeQuantity } from './shoppingCart.js';
 
 const loginForm = document.querySelector('#login-form');
 const logoutBtn = document.querySelector('#logout');
@@ -63,6 +64,9 @@ if (inputFields) {
       const productPrice = product.querySelector('.sc-product__price');
       const productTotalPrice = product.querySelector('.sc-product__total');
       productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +input.value).toFixed(2)}`;
+
+      const productName = product.querySelector('.heading-tertiary').textContent;
+      changeQuantity(productName, +input.value);
     });
   });
 }

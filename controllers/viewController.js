@@ -59,7 +59,7 @@ exports.getCart = catchAsync(async (req, res, next) => {
       return obj;
     }, {});
   }
-  
+
   res.status(200).render('shopping_cart.pug', {
     title: 'My Cart',
     products,
@@ -82,6 +82,25 @@ exports.addToCart = catchAsync(async (req, res, next) => {
     existingProduct.quantity += 1;
   } else {
     cart.products.push({ productID: id, quantity });
+  }
+
+  await cart.save();
+  res.status(200).json({
+    status: 'success',
+  });
+});
+
+exports.updateCart = catchAsync(async (req, res, next) => {
+  const userID = req.user.id;
+  const { productName, quantity } = req.body;
+
+  const { id } = await Product.findOne({ title: productName });
+
+  let cart = await Cart.findOne({ user: userID });
+
+  const existingProduct = cart.products.find(product => product.productID === id);
+  if (existingProduct) {
+    existingProduct.quantity = quantity;
   }
 
   await cart.save();
