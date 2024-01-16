@@ -75,10 +75,11 @@ const changeQtyAndCalcProdTotal = (product, inputFld) => {
   productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +inputFld.value).toFixed(2)}`;
 
   const productName = product.querySelector('.heading-tertiary').textContent;
+  console.log(+inputFld.value);
   changeQuantity(productName, +inputFld.value);
   recalculateTotal();
 
-  if (!inputFld.value || inputFld.value === '0') product.style.display = 'none';
+  // if (!inputFld.value || inputFld.value === '0') product.style.display = 'none';
 };
 
 if (inputFields) {
@@ -100,9 +101,9 @@ if (leftArrows || rightArrows) {
       const product = arrow.closest('.sc-product');
       const inputField = product.querySelector('#amount');
 
-      changeQtyAndCalcProdTotal(product, inputField);
+      inputField.value > 1 ? inputField.value-- : (inputField.value = 1);
 
-      inputField.value > 0 ? inputField.value-- : (inputField.value = 0);
+      changeQtyAndCalcProdTotal(product, inputField);
     });
   });
   rightArrows.forEach(arrow => {
@@ -110,9 +111,9 @@ if (leftArrows || rightArrows) {
       const product = arrow.closest('.sc-product');
       const inputField = product.querySelector('#amount');
 
-      changeQtyAndCalcProdTotal(product, inputField);
-
       inputField.value < 99 ? inputField.value++ : (inputField.value = 99);
+
+      changeQtyAndCalcProdTotal(product, inputField);
     });
   });
 }

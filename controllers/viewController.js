@@ -36,12 +36,13 @@ exports.getCart = catchAsync(async (req, res, next) => {
   let products;
   let productsTotal;
   if (cart) {
-    cart = cart.products.map(async product => {
+    cart.products = cart.products.filter(product => product.quantity > 0);
+    const arrayWithProd = cart.products.map(async product => {
       const newProduct = await Product.findById(product.productID);
       newProduct.quantity = product.quantity;
       return newProduct;
     });
-    products = await Promise.all(cart);
+    products = await Promise.all(arrayWithProd);
     productsTotal = products.reduce((obj, cur) => {
       let total = 0,
         discount = 0,
@@ -59,6 +60,7 @@ exports.getCart = catchAsync(async (req, res, next) => {
       return obj;
     }, {});
   }
+  if (cart) await cart.save();
 
   res.status(200).render('shopping_cart.pug', {
     title: 'My Cart',
@@ -103,7 +105,7 @@ exports.updateCart = catchAsync(async (req, res, next) => {
     existingProduct.quantity = quantity;
   }
 
-  if (quantity === 0) cart.products = cart.products.filter(product => product.quantity > 0);
+  // if (quantity === 0) cart.products = cart.products.filter(product => product.quantity > 0);
 
   await cart.save();
   res.status(200).json({
