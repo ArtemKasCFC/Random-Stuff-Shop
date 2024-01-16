@@ -6250,19 +6250,23 @@ var recalculateTotal = function recalculateTotal() {
   finalEl.textContent = "$".concat((totalEl.textContent.slice(1) - discountEl.textContent.slice(1)).toFixed(2));
 };
 
+var changeQtyAndCalcProdTotal = function changeQtyAndCalcProdTotal(product, inputFld) {
+  var productPrice = product.querySelector('.sc-product__price');
+  var productTotalPrice = product.querySelector('.sc-product__total');
+  productTotalPrice.textContent = "$".concat((+productPrice.textContent.slice(1) * +inputFld.value).toFixed(2));
+  var productName = product.querySelector('.heading-tertiary').textContent;
+  (0, _shoppingCart.changeQuantity)(productName, +inputFld.value);
+  recalculateTotal();
+  if (!inputFld.value || inputFld.value === '0') product.style.display = 'none';
+};
+
 if (inputFields) {
   inputFields.forEach(function (input) {
     input.addEventListener('input', function (e) {
       if (input.value.length > 2) input.value = input.value.slice(0, 2);
       if (input.value.startsWith(0)) input.value = input.value.slice(1);
       var product = input.closest('.sc-product');
-      var productPrice = product.querySelector('.sc-product__price');
-      var productTotalPrice = product.querySelector('.sc-product__total');
-      productTotalPrice.textContent = "$".concat((+productPrice.textContent.slice(1) * +input.value).toFixed(2));
-      var productName = product.querySelector('.heading-tertiary').textContent;
-      (0, _shoppingCart.changeQuantity)(productName, +input.value);
-      if (!input.value) product.style.display = 'none';
-      recalculateTotal();
+      changeQtyAndCalcProdTotal(product, input);
     });
   });
 }
@@ -6272,27 +6276,16 @@ if (leftArrows || rightArrows) {
     arrow.addEventListener('click', function (e) {
       var product = arrow.closest('.sc-product');
       var inputField = product.querySelector('#amount');
+      changeQtyAndCalcProdTotal(product, inputField);
       inputField.value > 0 ? inputField.value-- : inputField.value = 0;
-      var productPrice = product.querySelector('.sc-product__price');
-      var productTotalPrice = product.querySelector('.sc-product__total');
-      productTotalPrice.textContent = "$".concat((+productPrice.textContent.slice(1) * +inputField.value).toFixed(2));
-      var productName = product.querySelector('.heading-tertiary').textContent;
-      (0, _shoppingCart.changeQuantity)(productName, +inputField.value);
-      if (!inputField.value || inputField.value === '0') product.style.display = 'none';
-      recalculateTotal();
     });
   });
   rightArrows.forEach(function (arrow) {
     arrow.addEventListener('click', function (e) {
       var product = arrow.closest('.sc-product');
       var inputField = product.querySelector('#amount');
+      changeQtyAndCalcProdTotal(product, inputField);
       inputField.value < 99 ? inputField.value++ : inputField.value = 99;
-      var productPrice = product.querySelector('.sc-product__price');
-      var productTotalPrice = product.querySelector('.sc-product__total');
-      productTotalPrice.textContent = "$".concat((+productPrice.textContent.slice(1) * +inputField.value).toFixed(2));
-      var productName = product.querySelector('.heading-tertiary').textContent;
-      (0, _shoppingCart.changeQuantity)(productName, +inputField.value);
-      recalculateTotal();
     });
   });
 }

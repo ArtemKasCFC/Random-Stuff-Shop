@@ -68,22 +68,28 @@ const recalculateTotal = () => {
   finalEl.textContent = `$${(totalEl.textContent.slice(1) - discountEl.textContent.slice(1)).toFixed(2)}`;
 };
 
+const changeQtyAndCalcProdTotal = (product, inputFld) => {
+  const productPrice = product.querySelector('.sc-product__price');
+  const productTotalPrice = product.querySelector('.sc-product__total');
+
+  productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +inputFld.value).toFixed(2)}`;
+
+  const productName = product.querySelector('.heading-tertiary').textContent;
+  changeQuantity(productName, +inputFld.value);
+  recalculateTotal();
+
+  if (!inputFld.value || inputFld.value === '0') product.style.display = 'none';
+};
+
 if (inputFields) {
   inputFields.forEach(input => {
     input.addEventListener('input', e => {
       if (input.value.length > 2) input.value = input.value.slice(0, 2);
       if (input.value.startsWith(0)) input.value = input.value.slice(1);
+
       const product = input.closest('.sc-product');
-      const productPrice = product.querySelector('.sc-product__price');
-      const productTotalPrice = product.querySelector('.sc-product__total');
-      productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +input.value).toFixed(2)}`;
 
-      const productName = product.querySelector('.heading-tertiary').textContent;
-      changeQuantity(productName, +input.value);
-
-      if (!input.value) product.style.display = 'none';
-
-      recalculateTotal();
+      changeQtyAndCalcProdTotal(product, input);
     });
   });
 }
@@ -93,34 +99,20 @@ if (leftArrows || rightArrows) {
     arrow.addEventListener('click', e => {
       const product = arrow.closest('.sc-product');
       const inputField = product.querySelector('#amount');
+
+      changeQtyAndCalcProdTotal(product, inputField);
+
       inputField.value > 0 ? inputField.value-- : (inputField.value = 0);
-
-      const productPrice = product.querySelector('.sc-product__price');
-      const productTotalPrice = product.querySelector('.sc-product__total');
-      productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +inputField.value).toFixed(2)}`;
-
-      const productName = product.querySelector('.heading-tertiary').textContent;
-      changeQuantity(productName, +inputField.value);
-
-      if (!inputField.value || inputField.value === '0') product.style.display = 'none';
-
-      recalculateTotal();
     });
   });
   rightArrows.forEach(arrow => {
     arrow.addEventListener('click', e => {
       const product = arrow.closest('.sc-product');
       const inputField = product.querySelector('#amount');
+
+      changeQtyAndCalcProdTotal(product, inputField);
+
       inputField.value < 99 ? inputField.value++ : (inputField.value = 99);
-
-      const productPrice = product.querySelector('.sc-product__price');
-      const productTotalPrice = product.querySelector('.sc-product__total');
-      productTotalPrice.textContent = `$${(+productPrice.textContent.slice(1) * +inputField.value).toFixed(2)}`;
-
-      const productName = product.querySelector('.heading-tertiary').textContent;
-      changeQuantity(productName, +inputField.value);
-
-      recalculateTotal();
     });
   });
 }
