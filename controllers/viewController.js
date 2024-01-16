@@ -102,6 +102,7 @@ exports.updateCart = catchAsync(async (req, res, next) => {
   if (existingProduct || quantity > 0) {
     existingProduct.quantity = quantity;
   }
+
   if (quantity === 0) cart.products = cart.products.filter(product => product.quantity > 0);
 
   await cart.save();
