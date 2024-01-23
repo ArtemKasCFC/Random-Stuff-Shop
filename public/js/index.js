@@ -119,11 +119,12 @@ if (leftArrows || rightArrows) {
 }
 
 // Scroll
-document.querySelectorAll('a:link').forEach(function (link) {
-  link.addEventListener('click', function (e) {
+const OBSbtn = document.querySelector('.hero-btn');
+if (OBSbtn) {
+  document.querySelector('.hero-btn').addEventListener('click', function (e) {
     e.preventDefault();
 
-    const href = link.getAttribute('href');
+    const href = OBSbtn.getAttribute('href');
 
     if (href === '#') {
       window.scrollTo({
@@ -135,9 +136,5 @@ document.querySelectorAll('a:link').forEach(function (link) {
     if (href !== '#' && href.startsWith('#')) {
       document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
     }
-    console.log(link);
-    if (link.closest('ul').classList.contains('main-nav-list')) {
-      document.querySelector('.header').classList.toggle('nav-open');
-    }
   });
-});
+}

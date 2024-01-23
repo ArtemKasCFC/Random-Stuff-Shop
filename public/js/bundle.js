@@ -6291,10 +6291,12 @@ if (leftArrows || rightArrows) {
 } // Scroll
 
 
-document.querySelectorAll('a:link').forEach(function (link) {
-  link.addEventListener('click', function (e) {
+var OBSbtn = document.querySelector('.hero-btn');
+
+if (OBSbtn) {
+  document.querySelector('.hero-btn').addEventListener('click', function (e) {
     e.preventDefault();
-    var href = link.getAttribute('href');
+    var href = OBSbtn.getAttribute('href');
 
     if (href === '#') {
       window.scrollTo({
@@ -6308,14 +6310,8 @@ document.querySelectorAll('a:link').forEach(function (link) {
         behavior: 'smooth'
       });
     }
-
-    console.log(link);
-
-    if (link.closest('ul').classList.contains('main-nav-list')) {
-      document.querySelector('.header').classList.toggle('nav-open');
-    }
   });
-});
+}
 },{"./login":"login.js","./cartMain.js":"cartMain.js","./shoppingCart.js":"shoppingCart.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
