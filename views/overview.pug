@@ -7,9 +7,9 @@ block content
                 .hero-text-box
                     h1.heading-primary Random Stuff Shop
                     p.hero-description Not a great project at all, which was created for learning purposes only.
-                    a.hero-btn.btn(href='')
+                    a.hero-btn.btn(href='#best-sellers')
                         span Our Best Sellers
-        section.best-sellers
+        section#best-sellers.best-sellers
             .container
                 p.subheading Best Sellers
                 h2.heading-secondary Our most popular products based on sales
@@ -21,7 +21,7 @@ block content
                                 h3.product-title.heading-tertiary #{product.title}
                                 p.product-desc #{product.summary}
                             if user     
-                                button.product-btn $#{product.price} &dash; Add to bag
+                                button.product-btn.btn $#{product.price} &dash; Add to bag
                             else
-                                a(href=`/product/${product.slug}`).product-btn-redirect Check it out
+                                a(href=`/product/${product.slug}`).product-btn-redirect.btn Check it out
         
