@@ -209,7 +209,8 @@ input[type='number'] {
   transition: all 0.3s ease;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus {
   color: #000;
 }
 
@@ -217,7 +218,8 @@ input[type='number'] {
   font-size: 2.4rem;
 }
 
-.btn:hover:after {
+.btn:hover:after,
+.btn:focus:after {
   background: var(--purple);
   -webkit-transform: scale(2) rotate(180deg);
   transform: scale(2) rotate(180deg);

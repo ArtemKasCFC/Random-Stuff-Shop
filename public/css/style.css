@@ -72,16 +72,19 @@
 .hero {
   background-image: url('/img/Untitled\ Project.jpg');
   background-size: cover;
-  background-position: 0rem -30rem;
   height: 95vh;
+  background-position: 0rem -50rem;
   display: grid;
   grid-template-rows: 1fr 1.5fr;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   margin-bottom: 16rem;
 }
 
 .hero-text-box {
+  background-color: #000;
+  box-shadow: 0 5rem 15rem 5rem #000;
+  margin-top: 2.4rem;
   text-align: center;
 }
 
@@ -92,12 +95,17 @@
 }
 
 .hero-btn {
+  letter-spacing: 0.8rem;
   padding: 1.2rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*BESTSELLERS*/
 
 .best-sellers {
+  padding: 2.4rem;
   margin-bottom: 9.8rem;
 }
 
