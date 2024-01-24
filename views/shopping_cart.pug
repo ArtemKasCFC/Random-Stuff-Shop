@@ -11,13 +11,13 @@ block content
                         .sc-info
                             p.sc-info__total-price
                                 | Total Price: 
-                                span $#{productsTotal.total}
+                                span $#{productsTotal.total.toFixed(2)}
                             p.sc-info__discount
                                 | Discount: 
-                                span $#{productsTotal.discount}
+                                span $#{productsTotal.discount.toFixed(2)}
                             p.sc-info__final-price
                                 | Final Price: 
-                                span $#{productsTotal.final}
+                                span $#{productsTotal.final.toFixed(2)}
                         button.check-out-btn.btn Check Out
                     .sc-products
                         ul.sc-products-list

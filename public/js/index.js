@@ -32,10 +32,11 @@ addToCartBtns.forEach(btn => {
 
 // Images Slider
 const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgID = 1;
 
 if (imgs) {
+  const imgBtns = [...imgs];
+  let imgID = 1;
+
   const slideImg = () => {
     const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
     document.querySelector('.img-showcase').style.transform = `translateX(${-(imgID - 1) * displayWidth}px)`;
@@ -78,8 +79,6 @@ const changeQtyAndCalcProdTotal = (product, inputFld) => {
   console.log(+inputFld.value);
   changeQuantity(productName, +inputFld.value);
   recalculateTotal();
-
-  // if (!inputFld.value || inputFld.value === '0') product.style.display = 'none';
 };
 
 if (inputFields) {
@@ -89,6 +88,8 @@ if (inputFields) {
       if (input.value.startsWith(0)) input.value = input.value.slice(1);
 
       const product = input.closest('.sc-product');
+      if (+input.value === 1) product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade');
+      if (+input.value === 99) product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade');
 
       changeQtyAndCalcProdTotal(product, input);
     });
@@ -102,6 +103,14 @@ if (leftArrows || rightArrows) {
       const inputField = product.querySelector('#amount');
 
       inputField.value > 1 ? inputField.value-- : (inputField.value = 1);
+      if (
+        +inputField.value !== 1 &&
+        product.querySelector('.ph-arrow-square-left').classList.contains('arrow--shade')
+      ) {
+        product.querySelector('.ph-arrow-square-left').classList.remove('arrow--shade');
+      } else {
+        product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade');
+      }
 
       changeQtyAndCalcProdTotal(product, inputField);
     });
@@ -112,6 +121,14 @@ if (leftArrows || rightArrows) {
       const inputField = product.querySelector('#amount');
 
       inputField.value < 99 ? inputField.value++ : (inputField.value = 99);
+      if (
+        +inputField.value !== 99 &&
+        product.querySelector('.ph-arrow-square-right').classList.contains('arrow--shade')
+      ) {
+        product.querySelector('.ph-arrow-square-right').classList.remove('arrow--shade');
+      } else {
+        product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade');
+      }
 
       changeQtyAndCalcProdTotal(product, inputField);
     });

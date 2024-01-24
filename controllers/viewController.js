@@ -80,7 +80,9 @@ exports.addToCart = catchAsync(async (req, res, next) => {
   if (!cart) cart = new Cart({ user: userID, products: [] });
 
   const existingProduct = cart.products.find(product => product.productID === id);
-  if (existingProduct) {
+  if (existingProduct.quantity === 99) {
+    console.log('Max items were added');
+  } else if (existingProduct) {
     existingProduct.quantity += 1;
   } else {
     cart.products.push({ productID: id, quantity });
@@ -101,11 +103,9 @@ exports.updateCart = catchAsync(async (req, res, next) => {
   let cart = await Cart.findOne({ user: userID });
 
   const existingProduct = cart.products.find(product => product.productID === id);
-  if (existingProduct || quantity > 0) {
+  if (existingProduct && quantity > 0) {
     existingProduct.quantity = quantity;
   }
-
-  // if (quantity === 0) cart.products = cart.products.filter(product => product.quantity > 0);
 
   await cart.save();
   res.status(200).json({

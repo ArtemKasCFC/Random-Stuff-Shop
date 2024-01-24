@@ -11,8 +11,8 @@
     "start": "nodemon server.js",
     "import": "node dev/data/importDevData.js --import",
     "delete": "node dev/data/importDevData.js --delete",
-    "watch": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "build": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+    "watch": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
+    "build": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js --public-url ."
   },
   "repository": {
     "type": "git",

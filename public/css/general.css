@@ -21,6 +21,7 @@ Default: 1
 :root {
   --purple: #ff45d0;
   --sky: #0fe;
+  --purple-shade: #4c153e;
 }
 
 @keyframes flicker {

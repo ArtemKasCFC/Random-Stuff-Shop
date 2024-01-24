@@ -6212,11 +6212,11 @@ addToCartBtns.forEach(function (btn) {
 
 var imgs = document.querySelectorAll('.img-select a');
 
-var imgBtns = _toConsumableArray(imgs);
-
-var imgID = 1;
-
 if (imgs) {
+  var imgBtns = _toConsumableArray(imgs);
+
+  var imgID = 1;
+
   var slideImg = function slideImg() {
     var displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
     document.querySelector('.img-showcase').style.transform = "translateX(".concat(-(imgID - 1) * displayWidth, "px)");
@@ -6257,7 +6257,7 @@ var changeQtyAndCalcProdTotal = function changeQtyAndCalcProdTotal(product, inpu
   var productName = product.querySelector('.heading-tertiary').textContent;
   console.log(+inputFld.value);
   (0, _shoppingCart.changeQuantity)(productName, +inputFld.value);
-  recalculateTotal(); // if (!inputFld.value || inputFld.value === '0') product.style.display = 'none';
+  recalculateTotal();
 };
 
 if (inputFields) {
@@ -6266,6 +6266,8 @@ if (inputFields) {
       if (input.value.length > 2) input.value = input.value.slice(0, 2);
       if (input.value.startsWith(0)) input.value = input.value.slice(1);
       var product = input.closest('.sc-product');
+      if (+input.value === 1) product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade');
+      if (+input.value === 99) product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade');
       changeQtyAndCalcProdTotal(product, input);
     });
   });
@@ -6277,6 +6279,13 @@ if (leftArrows || rightArrows) {
       var product = arrow.closest('.sc-product');
       var inputField = product.querySelector('#amount');
       inputField.value > 1 ? inputField.value-- : inputField.value = 1;
+
+      if (+inputField.value !== 1 && product.querySelector('.ph-arrow-square-left').classList.contains('arrow--shade')) {
+        product.querySelector('.ph-arrow-square-left').classList.remove('arrow--shade');
+      } else {
+        product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade');
+      }
+
       changeQtyAndCalcProdTotal(product, inputField);
     });
   });
@@ -6285,6 +6294,13 @@ if (leftArrows || rightArrows) {
       var product = arrow.closest('.sc-product');
       var inputField = product.querySelector('#amount');
       inputField.value < 99 ? inputField.value++ : inputField.value = 99;
+
+      if (+inputField.value !== 99 && product.querySelector('.ph-arrow-square-right').classList.contains('arrow--shade')) {
+        product.querySelector('.ph-arrow-square-right').classList.remove('arrow--shade');
+      } else {
+        product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade');
+      }
+
       changeQtyAndCalcProdTotal(product, inputField);
     });
   });
@@ -6340,7 +6356,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52829" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60298" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -6516,4 +6532,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/bundle.js.map
+//# sourceMappingURL=bundle.js.map
