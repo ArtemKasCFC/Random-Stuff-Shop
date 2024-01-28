@@ -81,6 +81,15 @@ const changeQtyAndCalcProdTotal = (product, inputFld) => {
   recalculateTotal();
 };
 
+const changeArrowClass = (product, input) => {
+  +input.value === 1
+    ? product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade')
+    : product.querySelector('.ph-arrow-square-left').classList.remove('arrow--shade');
+  +input.value === 99
+    ? product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade')
+    : product.querySelector('.ph-arrow-square-right').classList.remove('arrow--shade');
+};
+
 if (inputFields) {
   inputFields.forEach(input => {
     input.addEventListener('input', e => {
@@ -88,8 +97,8 @@ if (inputFields) {
       if (input.value.startsWith(0)) input.value = input.value.slice(1);
 
       const product = input.closest('.sc-product');
-      if (+input.value === 1) product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade');
-      if (+input.value === 99) product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade');
+
+      changeArrowClass(product, input);
 
       changeQtyAndCalcProdTotal(product, input);
     });
@@ -103,32 +112,21 @@ if (leftArrows || rightArrows) {
       const inputField = product.querySelector('#amount');
 
       inputField.value > 1 ? inputField.value-- : (inputField.value = 1);
-      if (
-        +inputField.value !== 1 &&
-        product.querySelector('.ph-arrow-square-left').classList.contains('arrow--shade')
-      ) {
-        product.querySelector('.ph-arrow-square-left').classList.remove('arrow--shade');
-      } else {
-        product.querySelector('.ph-arrow-square-left').classList.add('arrow--shade');
-      }
+
+      changeArrowClass(product, inputField);
 
       changeQtyAndCalcProdTotal(product, inputField);
     });
   });
+
   rightArrows.forEach(arrow => {
     arrow.addEventListener('click', e => {
       const product = arrow.closest('.sc-product');
       const inputField = product.querySelector('#amount');
 
       inputField.value < 99 ? inputField.value++ : (inputField.value = 99);
-      if (
-        +inputField.value !== 99 &&
-        product.querySelector('.ph-arrow-square-right').classList.contains('arrow--shade')
-      ) {
-        product.querySelector('.ph-arrow-square-right').classList.remove('arrow--shade');
-      } else {
-        product.querySelector('.ph-arrow-square-right').classList.add('arrow--shade');
-      }
+
+      changeArrowClass(product, inputField);
 
       changeQtyAndCalcProdTotal(product, inputField);
     });
