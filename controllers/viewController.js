@@ -125,22 +125,27 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   const sessionArray = cart.products.map(product => {
     sessionObject = {
-      name: product.title,
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: product.title,
+        },
+        unit_amount_decimal: +(product.price * product.quantity).toFixed(2) * 100,
+      },
       quantity: +product.quantity,
-      amount: +(product.price * product.quantity).toFixed(2),
-      currency: 'usd',
     };
     return sessionObject;
   });
 
-  console.log(sessionArray);
-
   const session = await stripe.checkout.sessions.create({
     line_items: sessionArray,
     mode: 'payment',
-    success_url: `/`,
-    cancel_url: `/`,
+    success_url: `${req.protocol}://${req.get('host')}/`,
+    cancel_url: `${req.protocol}://${req.get('host')}/`,
   });
 
-  res.redirect(303, session.url);
+  res.status(200).json({
+    status: 'success',
+    session,
+  });
 });
