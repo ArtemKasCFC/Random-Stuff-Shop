@@ -6108,7 +6108,7 @@ function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeQuantity = void 0;
+exports.checkOut = exports.changeQuantity = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -6163,6 +6163,46 @@ function () {
 
   return function changeQuantity(_x, _x2) {
     return _ref.apply(this, arguments);
+  };
+}();
+
+var checkOut = exports.checkOut =
+/*#__PURE__*/
+function () {
+  var _ref2 = _asyncToGenerator(
+  /*#__PURE__*/
+  _regeneratorRuntime().mark(function _callee2() {
+    var res;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return (0, _axios.default)({
+            method: 'POST',
+            url: '/cart'
+          });
+
+        case 3:
+          res = _context2.sent;
+          if (res.data.status === 'success') console.log(res.data.status);
+          _context2.next = 10;
+          break;
+
+        case 7:
+          _context2.prev = 7;
+          _context2.t0 = _context2["catch"](0);
+          console.log("error---------------------------".concat(_context2.t0));
+
+        case 10:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function checkOut() {
+    return _ref2.apply(this, arguments);
   };
 }();
 },{"axios":"../../node_modules/axios/index.js"}],"index.js":[function(require,module,exports) {
@@ -6360,7 +6400,11 @@ if (OBSbtn) {
       });
     }
   });
-}
+} //Check Out
+
+
+var checkOutBtn = document.querySelector('.check-out-btn');
+if (checkOutBtn) checkOutBtn.addEventListener('click', _shoppingCart.checkOut);
 },{"./login":"login.js","./cartMain.js":"cartMain.js","./shoppingCart.js":"shoppingCart.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

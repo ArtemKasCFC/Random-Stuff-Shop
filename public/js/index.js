@@ -1,6 +1,6 @@
 import { login, logout } from './login';
 import { addToCart } from './cartMain.js';
-import { changeQuantity } from './shoppingCart.js';
+import { changeQuantity, checkOut } from './shoppingCart.js';
 
 const loginForm = document.querySelector('#login-form');
 const logoutBtn = document.querySelector('#logout');
@@ -199,3 +199,8 @@ if (OBSbtn) {
     }
   });
 }
+
+//Check Out
+const checkOutBtn = document.querySelector('.check-out-btn');
+
+if (checkOutBtn) checkOutBtn.addEventListener('click', checkOut);

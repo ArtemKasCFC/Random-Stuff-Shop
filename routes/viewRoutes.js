@@ -16,6 +16,7 @@ router.get('/login', viewController.getLoginForm);
 
 router
   .route('/cart')
+  .post(authController.protect, viewController.createCheckoutSession)
   .get(authController.protect, viewController.getCart)
   .patch(authController.protect, viewController.updateCart);
 

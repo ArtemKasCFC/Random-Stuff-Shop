@@ -25,7 +25,7 @@ block content
                                 li.sc-product
                                     img.sc-product__img(src=`/img/products/${product.image}` alt=`${product.title}`)
                                     h3.heading-tertiary #{product.title}
-                                    p.sc-product__price $#{product.price}
+                                    p.sc-product__price $#{(product.price).toFixed(2)}
                                     p.sc-product__discount $#{product.priceDiscount}
                                     .amount
                                         if product.quantity === 1

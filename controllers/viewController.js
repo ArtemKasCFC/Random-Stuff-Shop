@@ -1,3 +1,4 @@
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Product = require('../models/productModel');
@@ -73,22 +74,22 @@ exports.addToCart = catchAsync(async (req, res, next) => {
   const userID = req.user.id;
   const { productName, quantity } = req.body;
 
-  const { id } = await Product.findOne({ title: productName });
+  const { title, id, price } = await Product.findOne({ title: productName });
 
   let cart = await Cart.findOne({ user: userID });
 
   if (!cart) cart = new Cart({ user: userID, products: [] });
 
   const existingProduct = cart.products.find(product => product.productID === id);
-  if (existingProduct.quantity === 99) {
+  if (existingProduct?.quantity === 99) {
     console.log('Max items were added');
   } else if (existingProduct) {
     existingProduct.quantity += quantity;
   } else {
-    cart.products.push({ productID: id, quantity });
+    cart.products.push({ productID: id, title, quantity, price });
   }
 
-  if (existingProduct.quantity > 99) {
+  if (existingProduct?.quantity > 99) {
     console.log('Max items - 99');
     existingProduct.quantity = 99;
   }
@@ -116,4 +117,30 @@ exports.updateCart = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
   });
+});
+
+exports.createCheckoutSession = catchAsync(async (req, res, next) => {
+  const userID = req.user.id;
+  const cart = await Cart.findOne({ user: userID });
+
+  const sessionArray = cart.products.map(product => {
+    sessionObject = {
+      name: product.title,
+      quantity: +product.quantity,
+      amount: +(product.price * product.quantity).toFixed(2),
+      currency: 'usd',
+    };
+    return sessionObject;
+  });
+
+  console.log(sessionArray);
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: sessionArray,
+    mode: 'payment',
+    success_url: `/`,
+    cancel_url: `/`,
+  });
+
+  res.redirect(303, session.url);
 });
