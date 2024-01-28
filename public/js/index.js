@@ -53,11 +53,11 @@ if (imgs) {
   window.addEventListener('resize', slideImg);
 }
 
-// Input Field
-const inputFields = document.querySelectorAll('#amount');
+// Shopping Cart
+const inputFields = document.querySelectorAll('.sc-product #amount');
 const allTotalPrice = document.querySelectorAll('.sc-product__total');
-const leftArrows = document.querySelectorAll('.ph-arrow-square-left');
-const rightArrows = document.querySelectorAll('.ph-arrow-square-right');
+const leftArrows = document.querySelectorAll('.sc-product .ph-arrow-square-left');
+const rightArrows = document.querySelectorAll('.sc-product .ph-arrow-square-right');
 
 const recalculateTotal = () => {
   const totalEl = document.querySelector('.sc-info__total-price span');
@@ -130,6 +130,52 @@ if (leftArrows || rightArrows) {
 
       changeQtyAndCalcProdTotal(product, inputField);
     });
+  });
+}
+
+// Product Page
+const inputField = document.querySelector('.product-content #amount');
+const addToCartPDP = document.querySelector('.product-content .add-to-cart-btn');
+const leftArrow = document.querySelector('.product-content .ph-arrow-square-left');
+const rightArrow = document.querySelector('.product-content .ph-arrow-square-right');
+
+if (inputField) {
+  inputField.addEventListener('input', e => {
+    if (inputField.value.length > 2) inputField.value = inputField.value.slice(0, 2);
+    if (inputField.value.startsWith(0)) inputField.value = inputField.value.slice(1);
+
+    const product = document.querySelector('.product-content');
+
+    changeArrowClass(product, inputField);
+  });
+}
+
+if (leftArrow || rightArrow) {
+  leftArrow.addEventListener('click', e => {
+    const product = document.querySelector('.product-content');
+    const inputField = product.querySelector('#amount');
+
+    inputField.value > 1 ? inputField.value-- : (inputField.value = 1);
+
+    changeArrowClass(product, inputField);
+  });
+
+  rightArrow.addEventListener('click', e => {
+    const product = document.querySelector('.product-content');
+    const inputField = product.querySelector('#amount');
+
+    inputField.value < 99 ? inputField.value++ : (inputField.value = 99);
+
+    changeArrowClass(product, inputField);
+  });
+}
+
+if (addToCartPDP) {
+  addToCartPDP.addEventListener('click', e => {
+    const productName = document.querySelector('.heading-secondary').textContent;
+    const input = document.querySelector('#amount').value;
+
+    addToCart(productName, +input);
   });
 }
 

@@ -6058,41 +6058,44 @@ function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime().mark(function _callee(productName) {
-    var res;
+    var quantity,
+        res,
+        _args = arguments;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          _context.prev = 0;
-          _context.next = 3;
+          quantity = _args.length > 1 && _args[1] !== undefined ? _args[1] : 1;
+          _context.prev = 1;
+          _context.next = 4;
           return (0, _axios.default)({
             method: 'POST',
             url: '/',
             data: {
               productName: productName,
-              quantity: 1
+              quantity: quantity
             }
           });
 
-        case 3:
+        case 4:
           res = _context.sent;
 
           if (res.data.status === 'success') {
             console.log('added to cart');
           }
 
-          _context.next = 10;
+          _context.next = 11;
           break;
 
-        case 7:
-          _context.prev = 7;
-          _context.t0 = _context["catch"](0);
+        case 8:
+          _context.prev = 8;
+          _context.t0 = _context["catch"](1);
           console.log("error-----------------".concat(_context.t0));
 
-        case 10:
+        case 11:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 7]]);
+    }, _callee, null, [[1, 8]]);
   }));
 
   return function addToCart(_x) {
@@ -6230,13 +6233,13 @@ if (imgs) {
     });
   });
   window.addEventListener('resize', slideImg);
-} // Input Field
+} // Shopping Cart
 
 
-var inputFields = document.querySelectorAll('#amount');
+var inputFields = document.querySelectorAll('.sc-product #amount');
 var allTotalPrice = document.querySelectorAll('.sc-product__total');
-var leftArrows = document.querySelectorAll('.ph-arrow-square-left');
-var rightArrows = document.querySelectorAll('.ph-arrow-square-right');
+var leftArrows = document.querySelectorAll('.sc-product .ph-arrow-square-left');
+var rightArrows = document.querySelectorAll('.sc-product .ph-arrow-square-right');
 
 var recalculateTotal = function recalculateTotal() {
   var totalEl = document.querySelector('.sc-info__total-price span');
@@ -6296,6 +6299,44 @@ if (leftArrows || rightArrows) {
       changeQtyAndCalcProdTotal(product, inputField);
     });
   });
+} // Product Page
+
+
+var inputField = document.querySelector('.product-content #amount');
+var addToCartPDP = document.querySelector('.product-content .add-to-cart-btn');
+var leftArrow = document.querySelector('.product-content .ph-arrow-square-left');
+var rightArrow = document.querySelector('.product-content .ph-arrow-square-right');
+
+if (inputField) {
+  inputField.addEventListener('input', function (e) {
+    if (inputField.value.length > 2) inputField.value = inputField.value.slice(0, 2);
+    if (inputField.value.startsWith(0)) inputField.value = inputField.value.slice(1);
+    var product = document.querySelector('.product-content');
+    changeArrowClass(product, inputField);
+  });
+}
+
+if (leftArrow || rightArrow) {
+  leftArrow.addEventListener('click', function (e) {
+    var product = document.querySelector('.product-content');
+    var inputField = product.querySelector('#amount');
+    inputField.value > 1 ? inputField.value-- : inputField.value = 1;
+    changeArrowClass(product, inputField);
+  });
+  rightArrow.addEventListener('click', function (e) {
+    var product = document.querySelector('.product-content');
+    var inputField = product.querySelector('#amount');
+    inputField.value < 99 ? inputField.value++ : inputField.value = 99;
+    changeArrowClass(product, inputField);
+  });
+}
+
+if (addToCartPDP) {
+  addToCartPDP.addEventListener('click', function (e) {
+    var productName = document.querySelector('.heading-secondary').textContent;
+    var input = document.querySelector('#amount').value;
+    (0, _cartMain.addToCart)(productName, +input);
+  });
 } // Scroll
 
 
@@ -6348,7 +6389,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53139" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55017" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

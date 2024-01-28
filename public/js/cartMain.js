@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export const addToCart = async productName => {
+export const addToCart = async (productName, quantity = 1) => {
   try {
     const res = await axios({
       method: 'POST',
       url: '/',
       data: {
         productName,
-        quantity: 1,
+        quantity,
       },
     });
 

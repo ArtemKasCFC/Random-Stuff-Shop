@@ -37,7 +37,7 @@ block content
                                             i.ph-fill.ph-arrow-square-right.arrow.arrow--shade
                                         else 
                                             i.ph-fill.ph-arrow-square-right.arrow
-                                    p.sc-product__total $#{product.price * product.quantity}
+                                    p.sc-product__total $#{(product.price * product.quantity).toFixed(2)}
                                     button.sc-product__btn
                                         ion-icon(name='close-outline')
             else 

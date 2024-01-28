@@ -83,9 +83,14 @@ exports.addToCart = catchAsync(async (req, res, next) => {
   if (existingProduct.quantity === 99) {
     console.log('Max items were added');
   } else if (existingProduct) {
-    existingProduct.quantity += 1;
+    existingProduct.quantity += quantity;
   } else {
     cart.products.push({ productID: id, quantity });
+  }
+
+  if (existingProduct.quantity > 99) {
+    console.log('Max items - 99');
+    existingProduct.quantity = 99;
   }
 
   await cart.save();
