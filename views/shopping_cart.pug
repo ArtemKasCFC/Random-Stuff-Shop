@@ -28,9 +28,15 @@ block content
                                     p.sc-product__price $#{product.price}
                                     p.sc-product__discount $#{product.priceDiscount}
                                     .amount
-                                        i.ph-fill.ph-arrow-square-left.arrow
+                                        if product.quantity === 1
+                                            i.ph-fill.ph-arrow-square-left.arrow.arrow--shade
+                                        else 
+                                            i.ph-fill.ph-arrow-square-left.arrow
                                         input#amount(type='number' min='1' max='99' value=`${product.quantity}` placeholder='0')
-                                        i.ph-fill.ph-arrow-square-right.arrow
+                                        if product.quantity === 99
+                                            i.ph-fill.ph-arrow-square-right.arrow.arrow--shade
+                                        else 
+                                            i.ph-fill.ph-arrow-square-right.arrow
                                     p.sc-product__total $#{product.price * product.quantity}
                                     button.sc-product__btn
                                         ion-icon(name='close-outline')
