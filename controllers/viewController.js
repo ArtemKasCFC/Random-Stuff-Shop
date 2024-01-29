@@ -130,7 +130,7 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
         product_data: {
           name: product.title,
         },
-        unit_amount_decimal: +(product.price * product.quantity).toFixed(2) * 100,
+        unit_amount_decimal: +product.price * 100,
       },
       quantity: +product.quantity,
     };
@@ -139,9 +139,10 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
 
   const session = await stripe.checkout.sessions.create({
     line_items: sessionArray,
+    customer_email: 'anything@tomrp446.mailosaur.net',
     mode: 'payment',
     success_url: `${req.protocol}://${req.get('host')}/`,
-    cancel_url: `${req.protocol}://${req.get('host')}/`,
+    cancel_url: `${req.protocol}://${req.get('host')}/cart`,
   });
 
   res.status(200).json({

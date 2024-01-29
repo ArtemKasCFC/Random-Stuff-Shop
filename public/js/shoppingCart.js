@@ -17,9 +17,6 @@ export const checkOut = async () => {
   try {
     const session = await axios({ method: 'POST', url: '/cart' });
 
-    console.log(stripe);
-    console.log(session.data);
-
     await stripe.redirectToCheckout({
       sessionId: session.data.session.id,
     });

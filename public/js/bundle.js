@@ -64877,28 +64877,26 @@ function () {
 
         case 3:
           session = _context2.sent;
-          console.log(stripe);
-          console.log(session.data);
-          _context2.next = 8;
+          _context2.next = 6;
           return stripe.redirectToCheckout({
             sessionId: session.data.session.id
           });
 
-        case 8:
+        case 6:
           if (session.data.status === 'success') console.log(res.data.status);
-          _context2.next = 14;
+          _context2.next = 12;
           break;
 
-        case 11:
-          _context2.prev = 11;
+        case 9:
+          _context2.prev = 9;
           _context2.t0 = _context2["catch"](0);
           console.log("error---------------------------".concat(_context2.t0));
 
-        case 14:
+        case 12:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 11]]);
+    }, _callee2, null, [[0, 9]]);
   }));
 
   return function checkOut() {
@@ -65133,7 +65131,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55017" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59635" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
