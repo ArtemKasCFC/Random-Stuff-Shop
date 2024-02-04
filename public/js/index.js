@@ -200,7 +200,21 @@ if (OBSbtn) {
   });
 }
 
-//Check Out
+// Check Out
 const checkOutBtn = document.querySelector('.check-out-btn');
 
 if (checkOutBtn) checkOutBtn.addEventListener('click', checkOut);
+
+// Tabs
+const tabs = document.querySelectorAll('.tab');
+const tabsBtns = document.querySelectorAll('.tabs button');
+if (tabs) {
+  tabsBtns.forEach((btn, ind) => {
+    btn.addEventListener('click', e => {
+      tabs.forEach(tab => {
+        tab.classList.remove('tab--active');
+        tabs[ind].classList.add('tab--active');
+      });
+    });
+  });
+}

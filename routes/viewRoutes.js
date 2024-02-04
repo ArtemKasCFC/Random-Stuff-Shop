@@ -20,4 +20,6 @@ router
   .get(authController.protect, viewController.getCart)
   .patch(authController.protect, viewController.updateCart);
 
+router.route('/account').get(authController.protect, viewController.getAccountPage);
+
 module.exports = router;

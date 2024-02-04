@@ -1,0 +1,25 @@
+extends index
+
+block content
+    section.section-mypage
+        .container
+            .account-page
+                .tabs
+                    button Settings
+                    button My Orders
+                    button My Reviews
+                #settings.tab.tab--active
+                    p.subheading Settings
+                    h2.heading-secondary Update your account settings here.
+                    form#settings-form.form(action='/')
+                        label(for='name') Name
+                        input#name(type='text' name='name' placeholder='Your new Name' required='')
+                        label(for='email') Email
+                        input#email(type='text' name='email' placeholder='Your new Email' required='')
+                        button.btn(type='submit') Change
+                #orders.tab
+                    p.subheading My Orders
+                    h2.heading-secondary View your orders history here.
+                #reviews.tab
+                    p.subheading My Reviews
+                    h2.heading-secondary View and manage your product reviews here.

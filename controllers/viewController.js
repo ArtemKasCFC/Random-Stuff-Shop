@@ -12,6 +12,13 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAccountPage = catchAsync(async (req, res, next) => {
+  res.status(200).render('account', {
+    title: 'Your Page',
+    user: req.user,
+  });
+});
+
 exports.getProductPage = catchAsync(async (req, res, next) => {
   const product = await Product.findOne({ slug: req.params.slug });
   //.populate({
@@ -144,6 +151,8 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     success_url: `${req.protocol}://${req.get('host')}/`,
     cancel_url: `${req.protocol}://${req.get('host')}/cart`,
   });
+
+  console.log(session);
 
   res.status(200).json({
     status: 'success',

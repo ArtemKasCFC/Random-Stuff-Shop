@@ -17,7 +17,6 @@
     <header class="header">
       <a href="">
         <img class="logo-header" src="/public/img/logo-no-background.png" alt="Random Stuff Shop Logo" />
-        <!-- <p>Random Stuff Shop</p> -->
       </a>
       <nav class="main-nav">
         <ul class="main-nav__list">
@@ -38,9 +37,9 @@
       <div class="container">
         <div class="account-page">
           <div class="tabs">
-            <button onclick="openTab('settings')">Settings</button>
-            <button onclick="openTab('orders')">My Orders</button>
-            <button onclick="openTab('reviews')">My Reviews</button>
+            <button>Settings</button>
+            <button>My Orders</button>
+            <button>My Reviews</button>
           </div>
 
           <div id="settings" class="tab tab--active">
@@ -65,19 +64,6 @@
             <h2 class="heading-secondary">View and manage your product reviews here.</h2>
           </div>
         </div>
-
-        <script>
-          function openTab(tabName) {
-            const tabs = document.getElementsByClassName('tab');
-
-            const tabsArr = [...tabs];
-
-            tabsArr.forEach(tab => {
-              tab.classList.remove('tab--active');
-            });
-            document.getElementById(tabName).classList.add('tab--active');
-          }
-        </script>
       </div>
     </section>
     <footer>

@@ -70,10 +70,11 @@
 
 /*HERO*/
 .hero {
-  background-image: url('/img/Untitled\ Project.jpg');
-  background-size: cover;
+  /* background-image: url('/img/Untitled\ Project.jpg'); */
+  background-image: url('/img/Hero_Img.jpg');
+  background-size: contain;
   height: 95vh;
-  background-position: 0rem -50rem;
+  /* background-position: 0 -10rem; */
   display: grid;
   grid-template-rows: 1fr 1.5fr;
   align-items: start;
@@ -495,10 +496,10 @@ button.add-to-cart-btn {
 }
 
 .tab {
-  justify-self: center;
+  display: none;
 }
 
-#settings {
+.tab--active {
   display: flex;
   flex-direction: column;
   align-items: center;
