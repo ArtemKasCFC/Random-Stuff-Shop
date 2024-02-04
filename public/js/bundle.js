@@ -5923,7 +5923,27 @@ exports.isCancel = isCancel;
 exports.CanceledError = CanceledError;
 exports.AxiosError = AxiosError;
 exports.Axios = Axios;
-},{"./lib/axios.js":"../../node_modules/axios/lib/axios.js"}],"login.js":[function(require,module,exports) {
+},{"./lib/axios.js":"../../node_modules/axios/lib/axios.js"}],"alerts.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showAlert = exports.hideAlert = void 0;
+
+var hideAlert = exports.hideAlert = function hideAlert() {
+  var el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
+
+var showAlert = exports.showAlert = function showAlert(type, msg) {
+  var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 7;
+  hideAlert();
+  var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  window.setTimeout(hideAlert, time * 1000);
+};
+},{}],"login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5932,6 +5952,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.logout = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
+
+var _alerts = require("./alerts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5968,10 +5990,10 @@ function () {
           res = _context.sent;
 
           if (res.data.status === 'success') {
-            console.log('success');
+            (0, _alerts.showAlert)('success', 'You successfully logged in', 2.5);
             window.setTimeout(function () {
               location.assign('/');
-            }, 5000);
+            }, 3000);
           }
 
           _context.next = 10;
@@ -5980,7 +6002,7 @@ function () {
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
-          console.log("fail ----- ".concat(_context.t0));
+          (0, _alerts.showAlert)('error', _context.t0.message, 10);
 
         case 10:
         case "end":
@@ -6032,7 +6054,7 @@ function () {
     return _ref2.apply(this, arguments);
   };
 }();
-},{"axios":"../../node_modules/axios/index.js"}],"cartMain.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"cartMain.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

@@ -148,11 +148,11 @@ exports.createCheckoutSession = catchAsync(async (req, res, next) => {
     line_items: sessionArray,
     customer_email: 'anything@tomrp446.mailosaur.net',
     mode: 'payment',
-    success_url: `${req.protocol}://${req.get('host')}/`,
+    success_url: `${req.protocol}://${req.get('host')}/account`,
     cancel_url: `${req.protocol}://${req.get('host')}/cart`,
   });
 
-  console.log(session);
+  console.log(session.amount_total / 100, session.payment_status);
 
   res.status(200).json({
     status: 'success',
